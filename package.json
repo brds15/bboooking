@@ -2,6 +2,9 @@
   "name": "bboooking",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "18.18.0"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -98,8 +101,5 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ],
-  "engines": {
-    "node": ">=18.18.0"
-  }
+  ]
 }
