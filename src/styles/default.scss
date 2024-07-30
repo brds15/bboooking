@@ -51,4 +51,8 @@ ul {
   overflow: auto;
   padding: 40px;
   width: 100%;
+
+  @media (max-width: 992px) {
+    padding: 20px;
+  }
 }
