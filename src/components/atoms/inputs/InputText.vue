@@ -22,6 +22,11 @@
         required: false,
         type: String
       },
+      label: {
+        default: '',
+        required: true,
+        type: String
+      },
       disabled: {
         default: false,
         required: false,
@@ -42,7 +47,7 @@
       const debounceId = ref()
 
       const changeInput = (e: Event) => {
-        const target = (<HTMLInputElement>e.target)
+        const target = <HTMLInputElement>e.target
 
         if (debounceId.value) {
           clearTimeout(debounceId.value)
@@ -63,8 +68,8 @@
 
 <template>
   <div class="input-text form-group">
-    <label for="location">
-      Local
+    <label :for="id">
+      {{ label }}
       <input
         type="text"
         :class="[`form-control, ${classes}`]"
