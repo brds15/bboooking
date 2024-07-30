@@ -1,7 +1,24 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+  import { defineComponent } from 'vue'
+
+  export default defineComponent({
+    props: {
+      classes: {
+        default: '',
+        required: false,
+        type: String
+      }
+    },
+    setup(props) {
+      return {
+        props
+      }
+    }
+  })
+</script>
 
 <template>
-  <div class="container-card">
+  <div :class="['container-card', props.classes]">
     <slot />
   </div>
 </template>

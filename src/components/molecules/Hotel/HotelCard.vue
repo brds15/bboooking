@@ -63,10 +63,11 @@
     border-radius: $border-radius-width;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     flex-wrap: nowrap;
     gap: 8px;
     padding: 18px;
-    width: 50%;
+    width: 48%;
 
     &-header {
       display: flex;

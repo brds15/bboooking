@@ -11,14 +11,24 @@
 
 <template>
   <div class="hotel-results">
-    <ContainerCard>
-      <h1>Hotel results</h1>
-      <HotelCard />
+    <h1>Hotel results</h1>
+    <ContainerCard classes="hotel-results-content">
+      <HotelCard /><HotelCard /><HotelCard /><HotelCard /><HotelCard />
     </ContainerCard>
   </div>
 </template>
 
 <style scoped lang="scss">
   .hotel-results {
+    width: 100%;
+
+    &-content {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 16px;
+    }
   }
 </style>
