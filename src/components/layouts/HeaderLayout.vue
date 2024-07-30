@@ -7,7 +7,7 @@
 <template>
   <header class="header">
     <div class="header-icon">
-      <img width="40" height="40" alt="Vue logo" src="../../assets/images/logo.png" />
+      <img alt="Vue logo" src="../../assets/images/logo.webp" />
       <h1>BBoooKing</h1>
     </div>
     <div class="header-options">
