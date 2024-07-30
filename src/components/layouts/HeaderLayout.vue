@@ -26,6 +26,7 @@
     border: 2px solid green;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 4px 0;
     width: 100%;
@@ -59,6 +60,28 @@
         font-size: 0.8em;
         font-weight: 500;
         margin-right: 12px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      &-icon {
+        img {
+          display: none;
+        }
+
+        h1 {
+          font-size: 1em;
+        }
+      }
+
+      &-profile {
+        span {
+          display: none;
+        }
+      }
+
+      &-options {
+        gap: 8px;
       }
     }
   }
