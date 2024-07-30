@@ -26,6 +26,14 @@
     grid-gap: 12px;
     height: auto;
     overflow: hidden;
+    padding: 14px;
     width: 100%;
+
+    @media (max-width: 992px) {
+      grid-template:
+      'search search' 1fr
+      'detail detail' 1fr
+      / 1fr 1fr;
+    }
   }
 </style>
