@@ -66,6 +66,7 @@
     flex-grow: 1;
     flex-wrap: nowrap;
     gap: 8px;
+    overflow: hidden;
     padding: 18px;
     width: 48%;
 
@@ -84,6 +85,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
 
         &-title {
           > h5 {
@@ -124,6 +126,7 @@
       align-items: center;
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: space-between;
       margin-top: 8px;
 
