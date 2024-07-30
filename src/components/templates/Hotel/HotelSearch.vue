@@ -19,6 +19,10 @@
 
 <style scoped lang="scss">
   .hotel-search {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 12px;
     grid-area: search;
   }
 </style>
