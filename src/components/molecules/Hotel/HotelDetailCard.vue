@@ -8,7 +8,7 @@
     name: 'HotelDetailCard',
     components: { IconStar, IconEye, ButtonPrimary },
     setup() {
-      const showDetails = ref('hidden')
+      const showDetails = ref('')
 
       const handleIconEyeClick = () => {
         showDetails.value = showDetails.value === '' ? 'hidden' : ''
@@ -48,6 +48,9 @@
         um restaurante e um bar no local, bem como serviço de quarto. Você também poderá desfrutar
         de várias opções gastronômicas regionais e internacionais a menos de 2 minutos a pé.
       </span>
+    </div>
+    <div :class="['hotel-detail-card-capacity', showDetails]">
+      <p class="hotel-detail-card-capacity-total">99 quartos disponíveis de 200</p>
     </div>
     <div :class="['hotel-detail-card-booking', showDetails]">
       <ButtonPrimary text="Reservar" />
@@ -115,6 +118,16 @@
       }
     }
 
+    &-capacity {
+      display: flex;
+      justify-content: center;
+
+      &-total {
+        font-size: 0.7rem;
+        font-weight: 300;
+      }
+    }
+
     &-description {
       background-color: $gray-100;
       border-radius: $border-radius-width;
@@ -134,13 +147,45 @@
     }
 
     &-second.hidden,
+    &-capacity.hidden,
     &-description.hidden,
     &-booking.hidden {
       display: none;
     }
 
     @media (max-width: 992px) {
-      height: 300px;
+      gap: 8px;
+      padding: 12px;
+
+      &-header {
+        &-title {
+          gap: 4px;
+
+          &-content {
+            font-size: 0.8em;
+          }
+        }
+
+        &-rate {
+          > span {
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      &-second {
+        &-address {
+          font-size: 0.7rem;
+        }
+
+        &-price {
+          font-size: 0.8rem;
+
+          > span {
+            display: none;
+          }
+        }
+      }
 
       &-description {
         border-radius: $border-radius-width;

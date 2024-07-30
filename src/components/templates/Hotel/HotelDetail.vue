@@ -36,7 +36,11 @@
     }
 
     @media (max-width: 992px) {
-      height: 400px;
+      height: 100%;
+
+      &-image {
+        padding: 12px;
+      }
     }
   }
 </style>
