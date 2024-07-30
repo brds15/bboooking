@@ -22,8 +22,8 @@
     grid-template:
       'search detail' 1fr
       'search detail' 1fr
-      / 60% 40%;
-    grid-gap: 12px;
+      / 59% 39%;
+    grid-gap: 2%;
     height: auto;
     overflow: hidden;
     padding: 14px;
