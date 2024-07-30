@@ -28,10 +28,6 @@
 
 <style scoped lang="scss">
   .button {
-    &:hover {
-      background-color: $green-500;
-    }
-
     background-color: $green-400;
     border-radius: 0.5rem;
     color: white;
@@ -41,5 +37,9 @@
     line-height: 1.25rem;
     padding: 0.5rem 1rem;
     text-decoration: none;
+
+    &:hover {
+      background-color: $green-500;
+    }
   }
 </style>
