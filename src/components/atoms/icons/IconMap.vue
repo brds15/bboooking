@@ -1,6 +1,6 @@
 <template>
   <div
-    aria-label="redirecionar para busca de hoteis"
+    aria-label="mapa"
     tabindex="{2}"
     :class="['icon-map', props.classes]"
     @click="$emit('handleIconMapClick')"
@@ -28,9 +28,11 @@
       }
     },
     emits: ['handleIconMapClick'],
-    setup(props) {
-      const handleKeyDown = () => {
-
+    setup(props, emitsEvents) {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'm') {
+          emitsEvents.emit('handleIconMapClick')
+        }
       }
 
       return {
