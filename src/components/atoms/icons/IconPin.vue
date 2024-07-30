@@ -6,7 +6,7 @@
     @click="$emit('handleIconPinClick')"
     @keydown="handleKeyDown"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.1em" height="1.1em" viewBox="0 0 24 24">
       <path
         fill="#222c40"
         fillRule="evenodd"
@@ -36,3 +36,12 @@
     }
   })
 </script>
+
+<style lang="scss" scoped>
+  .icon-pin {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
+</style>
