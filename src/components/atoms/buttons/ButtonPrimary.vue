@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { ButtonHTMLAttributes, defineComponent, PropType } from 'vue'
 
   export default defineComponent({
     name: 'ButtonPrimary',
@@ -12,6 +12,11 @@
         default: 'regular',
         required: false,
         type: String
+      },
+      type: {
+        default: 'button',
+        required: false,
+        type: String as PropType<ButtonHTMLAttributes['type']>
       }
     },
     setup(props) {
@@ -23,7 +28,9 @@
 </script>
 
 <template>
-  <button :class="['button', props.size]" @click="$emit('click')">{{ props.text }}</button>
+  <button :type="props.type" :class="['button', props.size]" @click="$emit('click')">
+    {{ props.text }}
+  </button>
 </template>
 
 <style scoped lang="scss">
