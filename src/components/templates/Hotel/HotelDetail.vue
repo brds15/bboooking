@@ -1,25 +1,42 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
+  import HotelDetailCard from '@/components/molecules/Hotel/HotelDetailCard.vue'
 
   export default defineComponent({
     name: 'HotelDetail',
-    components: {}
+    components: { HotelDetailCard }
   })
 </script>
 
 <template>
   <div class="hotel-detail">
-      <h1>detail</h1>
+    <div class="hotel-detail-image">
+      <HotelDetailCard />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
   .hotel-detail {
-    background: url('https://images.pexels.com/photos/2096983/pexels-photo-2096983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center;
-    background-size: cover;
     border-radius: $border-radius-width;
     grid-area: detail;
     height: 800px;
-    padding: 24px;
+    overflow: hidden;
+
+    &-image {
+      background: url('~/src/assets/images/default-hotel.webp')
+        no-repeat center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      padding: 24px;
+      width: 100%;
+    }
+
+    @media (max-width: 992px) {
+      height: 400px;
+    }
   }
 </style>
