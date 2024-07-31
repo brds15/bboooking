@@ -1,8 +1,10 @@
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
+  import LabelInputError from '@/components/atoms/labels/LabelInputError.vue'
 
   export default defineComponent({
     name: 'InputDate',
+    components: { LabelInputError },
     props: {
       debounce: {
         default: 600,
@@ -37,6 +39,11 @@
         type: String
       },
       classes: {
+        default: '',
+        required: false,
+        type: String
+      },
+      errorMessage: {
         default: '',
         required: false,
         type: String
@@ -81,9 +88,12 @@
         @input="changeInput"
       />
     </label>
+    <div class="form-group-errors">
+      <LabelInputError :text="errorMessage" />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-  @import "InputBase";
+  @import 'InputBase';
 </style>
