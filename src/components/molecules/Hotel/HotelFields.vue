@@ -1,27 +1,28 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent, PropType } from 'vue'
   import InputDate from '@/components/atoms/inputs/InputDate.vue'
   import InputNumber from '@/components/atoms/inputs/InputNumber.vue'
   import InputText from '@/components/atoms/inputs/InputText.vue'
+  import { FieldProps } from '@/components/organisms/Hotel/HotelForm.vue'
 
   export default defineComponent({
     name: 'HotelFields',
     components: { InputDate, InputNumber, InputText },
     props: {
       checkinDate: {
-        type: String,
+        type: Object as PropType<FieldProps<string>>,
         required: true
       },
       checkoutDate: {
-        type: String,
+        type: Object as PropType<FieldProps<string>>,
         required: true
       },
       guests: {
-        type: Number,
+        type: Object as PropType<FieldProps<number>>,
         required: true
       },
       location: {
-        type: String,
+        type: Object as PropType<FieldProps<string>>,
         required: true
       }
     },
@@ -39,17 +40,20 @@
           name="location"
           label="Local"
           placeholder="Digite o local"
-          :value="location"
-          @onChangeInput="value => $emit('updateState', value, 'location')"
+          :error-message="location.errorMessage"
+          :value="location.value"
+          @onChangeInput="newValue => $emit('updateState', 'location', { value: newValue })"
         />
         <div class="hotel-fields-content-first-guests">
           <InputNumber
             id="guests"
             name="guests"
+            max="10"
             label="Hóspedes"
             placeholder="Número de hóspedes"
-            :value="guests"
-            @onChangeInput="value => $emit('updateState', value, 'guests')"
+            :error-message="guests.errorMessage"
+            :value="guests.value"
+            @onChangeInput="newValue => $emit('updateState', 'guests', { value: newValue })"
           />
         </div>
       </div>
@@ -58,15 +62,17 @@
           id="checkin"
           label="Data de Check-in"
           name="checkin"
-          :value="checkinDate"
-          @onChangeInput="value => $emit('updateState', value, 'checkinDate')"
+          :error-message="checkinDate.errorMessage"
+          :value="checkinDate.value"
+          @onChangeInput="newValue => $emit('updateState', 'checkinDate', { value: newValue })"
         />
         <InputDate
           id="checkout"
           label="Data de Check-out"
           name="checkout"
-          :value="checkoutDate"
-          @onChangeInput="value => $emit('updateState', value, 'checkoutDate')"
+          :error-message="checkoutDate.errorMessage"
+          :value="checkoutDate.value"
+          @onChangeInput="newValue => $emit('updateState', 'checkoutDate', { value: newValue })"
         />
       </div>
     </div>

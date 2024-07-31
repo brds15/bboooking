@@ -4,11 +4,16 @@
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelFields from '@/components/molecules/Hotel/HotelFields.vue'
 
-  export interface HotelFormState {
-    checkinDate: string
-    checkoutDate: string
-    guests: number
-    location: string
+  export interface FieldProps<T> {
+    errorMessage?: string
+    value: T
+  }
+
+  interface HotelFormState {
+    checkinDate: FieldProps<string>
+    checkoutDate: FieldProps<string>
+    guests: FieldProps<number>
+    location: FieldProps<string>
   }
 
   export default defineComponent({
@@ -16,10 +21,22 @@
     components: { ButtonPrimary, HotelFields, ContainerCard },
     setup() {
       const state: HotelFormState = reactive({
-        checkinDate: '',
-        checkoutDate: '',
-        guests: 1,
-        location: ''
+        checkinDate: {
+          errorMessage: '',
+          value: ''
+        },
+        checkoutDate: {
+          errorMessage: '',
+          value: ''
+        },
+        guests: {
+          errorMessage: '',
+          value: 1
+        },
+        location: {
+          errorMessage: '',
+          value: ''
+        }
       })
 
       const handleSearchHotels = () => {
@@ -33,10 +50,10 @@
       }
 
       const handleUpdateState = <K extends keyof HotelFormState>(
-        value: HotelFormState[K],
-        field: K
+        field: K,
+        { value }: FieldProps<string | number>
       ) => {
-        state[field] = value
+        state[field].value = value
       }
 
       return {

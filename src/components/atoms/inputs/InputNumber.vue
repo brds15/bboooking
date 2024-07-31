@@ -1,6 +1,7 @@
 <script lang="ts">
   import { defineComponent, ref } from 'vue'
   import LabelInputError from '@/components/atoms/labels/LabelInputError.vue'
+  import checkIsAnyNumber from '@/services/formServices'
 
   export default defineComponent({
     name: 'InputNumber',
@@ -21,6 +22,10 @@
       },
       min: {
         default: '1',
+        required: false,
+        type: String
+      },
+      max: {
         required: false,
         type: String
       },
@@ -58,6 +63,8 @@
     setup(props, emits) {
       const debounceId = ref()
 
+      const getErrorClass = () => (props.errorMessage ? 'error' : '')
+
       const changeInput = (e: Event) => {
         const target = <HTMLInputElement>e.target
 
@@ -66,20 +73,25 @@
         }
 
         debounceId.value = setTimeout(() => {
-          emits.emit('onChangeInput', target.value)
+          const validNumber = checkIsAnyNumber(target.value)
+
+          if (validNumber) {
+            emits.emit('onChangeInput', validNumber)
+          }
         }, props.debounce)
       }
 
       return {
-        changeInput,
-        props
+        getErrorClass,
+        props,
+        changeInput
       }
     }
   })
 </script>
 
 <template>
-  <div class="input-text form-group">
+  <div :class="['input-number form-group', getErrorClass]">
     <label :for="id">
       {{ label }}
       <input
@@ -87,6 +99,8 @@
         :class="[`form-control, ${classes}`]"
         :disabled="disabled"
         :id="id"
+        :max="max"
+        :min="min"
         :name="name"
         :placeholder="placeholder"
         :value="value"

@@ -53,6 +53,8 @@
     setup(props, emits) {
       const debounceId = ref()
 
+      const getErrorClass = () => (props.errorMessage ? 'error' : '')
+
       const changeInput = (e: Event) => {
         const target = <HTMLInputElement>e.target
 
@@ -66,15 +68,16 @@
       }
 
       return {
+        props,
         changeInput,
-        props
+        getErrorClass
       }
     }
   })
 </script>
 
 <template>
-  <div class="input-text form-group">
+  <div :class="['input-date form-group', getErrorClass()]">
     <label :for="id">
       {{ label }}
       <input
