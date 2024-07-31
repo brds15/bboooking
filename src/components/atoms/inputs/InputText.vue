@@ -85,5 +85,5 @@
 </template>
 
 <style scoped lang="scss">
-  @import "InputStyleBase";
+  @import "InputBase";
 </style>
