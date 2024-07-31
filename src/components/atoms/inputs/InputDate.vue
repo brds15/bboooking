@@ -85,29 +85,5 @@
 </template>
 
 <style scoped lang="scss">
-  .form-group {
-    margin-bottom: 15px;
-    width: 100%;
-
-    label {
-      color: $black-800;
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 400;
-    }
-
-    input {
-      border-radius: 8px;
-      border: 1px solid $white-200;
-      box-sizing: border-box;
-      font-size: 16px;
-      padding: 12px;
-      width: 100%;
-
-      &:focus {
-        border-color: $green-400;
-        outline: none;
-      }
-    }
-  }
+  @import "InputStyleBase";
 </style>
