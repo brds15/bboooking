@@ -31,7 +31,7 @@
 <template>
   <div class="hotel-card">
     <div class="hotel-card-header">
-      <img src="../../../assets/images/default-hotel.webp" width="100" height="100" alt="hotel" />
+      <img src="../../../assets/images/default-hotel.webp" alt="hotel" />
       <div class="hotel-card-header-content">
         <div class="hotel-card-header-content-title">
           <h5>Hotel BRDS</h5>
@@ -66,6 +66,7 @@
     flex-grow: 1;
     flex-wrap: nowrap;
     gap: 8px;
+    max-width: 50%;
     overflow: hidden;
     padding: 18px;
     width: 48%;
@@ -79,6 +80,8 @@
 
       > img {
         border-radius: 16px;
+        height: 100px;
+        width: 100px;
       }
 
       &-content {
@@ -116,7 +119,8 @@
       flex-direction: column;
       justify-content: flex-start;
 
-      &-address, &-capacity {
+      &-address,
+      &-capacity {
         font-size: 0.8rem;
         font-weight: 300;
       }
@@ -155,6 +159,32 @@
 
     @media (max-width: 992px) {
       padding: 12px;
+      max-width: unset;
+
+      &-header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        > img {
+          height: unset;
+          width: 100%;
+        }
+
+        &-content {
+          width: 100%;
+        }
+      }
+
+     &-content {
+       width: 100%;
+     }
+
+      &-footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 </style>
