@@ -39,6 +39,7 @@
       height: 100%;
 
       &-image {
+        height: unset;
         padding: 12px;
       }
     }

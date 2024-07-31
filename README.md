@@ -51,4 +51,6 @@ Componentes de médio nível: molecules, organisms e templates, seguem a conven�
 Como nos componentes dentro de 'atoms', que são do mais baixo nívels (nativo HTML) e usado por todo e qualquer componente.
 
 Escolhi apenas um breakpoint para permitir o layout responsivel: 992px. Para diminuir o escopo e abrangencia, e com esta medida os containers já entram numa escala de tela para pequenos monitores e tabletes que podem ter um bom dimensionamento somado a práticas do uso de flex-box e grid-layout.
+
+Na criação do formuário para busca de hoteis foi criado componentes de inputs para que sejam reaproveitados no formulario de reserva de quartos. O stado foi definido como local, pois são parametros que vão ser usados para a busca a partir do próprio formulário.
 ## To future / Para o futuro
