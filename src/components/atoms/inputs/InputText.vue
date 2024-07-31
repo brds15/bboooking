@@ -94,7 +94,6 @@
       display: block;
       font-size: 0.8rem;
       font-weight: 400;
-      margin-bottom: 5px;
     }
 
     input {
