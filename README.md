@@ -50,4 +50,5 @@ Já as demais divisões intercomponentes seguem a divisão do Atomic Desing: ato
 Componentes de médio nível: molecules, organisms e templates, seguem a convenção de ter uma pasta com o nome de sua page, caso seja utilizada somente por uma page. Caso seja multicompartilhado, indepedentemente do componente, não utiliza esta convenção.
 Como nos componentes dentro de 'atoms', que são do mais baixo nívels (nativo HTML) e usado por todo e qualquer componente.
 
+Escolhi apenas um breakpoint para permitir o layout responsivel: 992px. Para diminuir o escopo e abrangencia, e com esta medida os containers já entram numa escala de tela para pequenos monitores e tabletes que podem ter um bom dimensionamento somado a práticas do uso de flex-box e grid-layout.
 ## To future / Para o futuro
