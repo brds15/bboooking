@@ -67,6 +67,12 @@
     width: 100%;
 
     &-icon {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      text-decoration: none;
+
       img {
         margin-right: 12px;
       }
@@ -78,8 +84,7 @@
       }
     }
 
-    &-options,
-    &-icon {
+    &-options {
       align-items: center;
       display: flex;
       flex-direction: row;
