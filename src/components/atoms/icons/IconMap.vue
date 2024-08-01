@@ -2,7 +2,7 @@
   <div
     aria-label="mapa"
     tabindex="{2}"
-    :class="['icon-map', props.classes]"
+    :class="['icon icon-map', props.classes]"
     @click="$emit('handleIconMapClick')"
     @keydown="handleKeyDown"
   >
@@ -44,13 +44,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .icon-map {
-    cursor: pointer;
-  }
-
-  .icon-map.checked {
-    background-color: $blue-300;
-    border-radius: 8px;
-    padding: 8px 14px;
-  }
+  @import 'IconBase';
 </style>

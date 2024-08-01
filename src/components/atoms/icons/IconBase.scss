@@ -1,0 +1,18 @@
+.icon {
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+
+  &:hover {
+    background-color: $gray-200;
+    padding: 8px 14px;
+  }
+}
+
+.icon.checked {
+  background-color: $blue-300;
+  padding: 8px 14px;
+}

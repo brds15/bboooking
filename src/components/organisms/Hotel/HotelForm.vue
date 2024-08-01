@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { defineComponent, reactive } from 'vue'
   import { z, ZodIssue } from 'zod'
+  import { defineComponent, reactive } from 'vue'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelFields from '@/components/molecules/Hotel/HotelFields.vue'
@@ -129,7 +129,7 @@
 
     &-title {
       color: $black-900;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 400;
       margin-bottom: 24px;
     }

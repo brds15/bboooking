@@ -1,10 +1,8 @@
-<script setup lang="ts">
-  import HotelsPage from '@/components/pages/HotelPage.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="content">
-    <HotelsPage />
+    <router-view></router-view>
   </div>
 </template>
 

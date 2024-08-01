@@ -38,6 +38,8 @@ Guest -> GuestPage - página onde o hóspede pode visualizar a sua reserva e not
 
 Cada pagina adota a convenção de usar o Page como sufixo para identificar de forma rápida e fácil em importações a que tipo o componente é pertencente.
 
+Ao configurar o vue-router, foi escohido usar WebHashHistory para facilitar questões de configuração, pois se trata de uma aplicação demo. Mas na vida real sei o impacto que isto teria no SEO.
+
 Para o design da aplicação adotei Atomic Design, por se de fácil entendimento, já é bem utilizada qualquer tipo e tamanho de software. Esse abordagem ajuda com que cada o componente tenha respondes limitadas ou únicas, uma boa prática no solid.
 
 Com as pages já definidas e layout de interface na cabeça, fica mais claro como vão ser as divisões entre os componentes.

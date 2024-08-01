@@ -114,6 +114,10 @@
         &-second {
           width: 100%;
         }
+
+        &-second {
+          flex-wrap: wrap;
+        }
       }
     }
   }
