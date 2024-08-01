@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { z, ZodIssue } from 'zod'
   import { defineComponent, reactive } from 'vue'
+  import { z, ZodIssue } from 'zod'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelFields from '@/components/molecules/Hotel/HotelFields.vue'

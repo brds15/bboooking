@@ -1,13 +1,22 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
+  import BookPayment from '@/components/templates/Book/BookPayment.vue'
 
   export default defineComponent({
-    name: 'BookPage'
+    name: 'BookPage',
+    components: { BookPayment }
   })
 </script>
 
 <template>
-  <h1>BookPage</h1>
+  <div class="book-page">
+    <BookPayment />
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  .book-page {
+    padding: 14px 0;
+    width: 100%;
+  }
+</style>
