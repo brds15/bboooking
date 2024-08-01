@@ -109,8 +109,8 @@
 
 <template>
   <ContainerCard classes="hotel-form">
+    <h1 class="hotel-form-title">Encontre sua estadia</h1>
     <form @submit.prevent="handleSearchHotels">
-      <h1>Hotel Form</h1>
       <HotelFields
         :checkinDate="state.checkinDate"
         :checkoutDate="state.checkoutDate"
@@ -126,6 +126,13 @@
 <style scoped lang="scss">
   .hotel-form {
     width: 100%;
+
+    &-title {
+      color: $black-900;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
 
     button {
       display: block;

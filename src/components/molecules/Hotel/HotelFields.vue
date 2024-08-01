@@ -31,7 +31,6 @@
 </script>
 
 <template>
-  <h1>Fields</h1>
   <div class="hotel-fields">
     <div class="hotel-fields-content">
       <div class="hotel-fields-content-first">

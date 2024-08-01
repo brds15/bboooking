@@ -11,7 +11,6 @@
 
 <template>
   <div class="hotel-search">
-    <h1>search</h1>
     <HotelForm />
     <HotelResults />
   </div>

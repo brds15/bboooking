@@ -11,7 +11,6 @@
 
 <template>
   <div class="hotel-results">
-    <h1>Hotel results</h1>
     <ContainerCard classes="hotel-results-content">
       <HotelCard /><HotelCard /><HotelCard /><HotelCard /><HotelCard />
     </ContainerCard>
