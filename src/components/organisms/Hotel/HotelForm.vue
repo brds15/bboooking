@@ -10,7 +10,7 @@
     value: T
   }
 
-  interface HotelFormState {
+  interface SearchData {
     checkinDate: FieldProps<string>
     checkoutDate: FieldProps<string>
     guests: FieldProps<number>
@@ -38,7 +38,7 @@
     name: 'HotelForm',
     components: { ButtonPrimary, HotelFields, ContainerCard },
     setup() {
-      const searchData: HotelFormState = reactive({
+      const searchData: SearchData = reactive({
         checkinDate: {
           errorMessage: '',
           value: ''
@@ -61,8 +61,8 @@
         errors.forEach(error => {
           const [field] = error.path
 
-          if (field && searchData[field as keyof HotelFormState]) {
-            searchData[field as keyof HotelFormState].errorMessage = error.message
+          if (field && searchData[field as keyof SearchData]) {
+            searchData[field as keyof SearchData].errorMessage = error.message
           }
         })
       }
@@ -91,7 +91,7 @@
         })
       }
 
-      const handleUpdateState = <K extends keyof HotelFormState>(
+      const handleUpdateState = <K extends keyof SearchData>(
         field: K,
         { value }: FieldProps<string | number>
       ) => {
