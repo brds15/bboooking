@@ -17,21 +17,21 @@
     location: FieldProps<string>
   }
 
-  const StringSchema = z.object({
+  const stringSchema = z.object({
     errorMessage: z.string(),
     value: z.string().min(1, { message: 'Campo obrigatório' })
   })
 
-  const NumberSchema = z.object({
+  const numberSchema = z.object({
     errorMessage: z.string(),
     value: z.number().min(1, { message: 'Campo obrigatório' })
   })
 
-  const HotelFormStateSchema = z.object({
-    checkinDate: StringSchema,
-    checkoutDate: StringSchema,
-    guests: NumberSchema,
-    location: StringSchema
+  const hotelFormStateSchema = z.object({
+    checkinDate: stringSchema,
+    checkoutDate: stringSchema,
+    guests: numberSchema,
+    location: stringSchema
   })
 
   export default defineComponent({
@@ -68,7 +68,7 @@
       }
 
       const validateForm = () => {
-        const result = HotelFormStateSchema.safeParse(searchData)
+        const result = hotelFormStateSchema.safeParse(searchData)
 
         if (!result.success) {
           // eslint-disable-next-line
