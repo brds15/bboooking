@@ -26,7 +26,7 @@
     grid-gap: 2%;
     height: auto;
     overflow: hidden;
-    padding: 14px;
+    padding: 14px 0;
     width: 100%;
 
     @media (max-width: 992px) {
