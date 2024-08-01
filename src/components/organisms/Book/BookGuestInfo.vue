@@ -95,8 +95,8 @@
 
 <template>
   <ContainerCard classes="book-guest-info">
-    <h1 class="book-guest-info-title">Pagamento</h1>
-    <form @submit.prevent="handleSubmit">
+    <form class="book-guest-info-form" @submit.prevent="handleSubmit">
+      <h1 class="book-guest-info-form-title">Pagamento</h1>
       <InputText
         id="name"
         label="Nome"
@@ -149,15 +149,23 @@
 
 <style scoped lang="scss">
   .book-guest-info {
-    background-color: $white-200;
     border-radius: $border-radius-width;
     display: flex;
     flex-direction: column;
     min-width: 360px;
     width: 49%;
 
-    &-title {
-      margin-bottom: 16px;
+    &-form {
+      background-color: $white-200;
+      border-radius: $border-radius-width;
+      padding: 20px;
+
+      &-title {
+        color: $black-900;
+        font-size: 1.3rem;
+        font-weight: 400;
+        margin-bottom: 16px;
+      }
     }
 
     &-footer {
