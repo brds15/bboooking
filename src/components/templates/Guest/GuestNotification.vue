@@ -31,7 +31,7 @@
 
 <style scoped lang="scss">
   .guest-notification {
-    margin: 0 auto;
+    margin: 24px auto;
     width: 80vw;
 
     &-item {
