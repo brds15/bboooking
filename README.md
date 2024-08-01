@@ -56,5 +56,7 @@ Escolhi apenas um breakpoint para permitir o layout responsivel: 992px. Para dim
 
 Na criação do formuário para busca de hoteis foi criado componentes de inputs para que sejam reaproveitados no formulario de reserva de quartos. O stado foi definido como local, pois são parametros que vão ser usados para a busca a partir do próprio formulário.
 
-Decidi fazer o gerenciamento de stado do formulário de forma nativa com a estrutura de {campo: {valor, erro}, pois já é suficiente para esta aplicação. Zod foi escolhido para realizar o schema handler.
+Decidi fazer a gestão de estado no formulário de forma nativa com a estrutura de {campo: {valor, erro}, pois já é suficiente para esta aplicação. Zod foi escolhido para realizar o schema handler.
+
+A página Guest tem como objetivo exibir as notificações do usuário com o template GuestNotification. A estrutura de dados foi pensada para ser mais simples possível de apenas 1 array de string para que o escopo do software não fique complexo.
 ## To future / Para o futuro

@@ -41,8 +41,8 @@
       border: 2px solid $black-800;
       display: flex;
       justify-content: space-between;
-      margin-bottom: 12px;
-      padding: 10px;
+      margin-bottom: 16px;
+      padding: 16px;
 
       p {
         font-size: 0.8rem;
