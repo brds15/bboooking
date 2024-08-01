@@ -1,13 +1,15 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
+  import GuestNotification from '@/components/templates/Guest/GuestNotification.vue'
 
   export default defineComponent({
-    name: 'GuestPage'
+    name: 'GuestPage',
+    components: { GuestNotification }
   })
 </script>
 
 <template>
-  <h1>Guest Page</h1>
+  <GuestNotification />
 </template>
 
 <style scoped lang="scss"></style>
