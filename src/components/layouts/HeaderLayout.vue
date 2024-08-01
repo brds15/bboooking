@@ -45,7 +45,7 @@
       </router-link>
     </div>
     <div class="header-profile">
-      <router-link class="header-profile-link" :to="ROUTES.GUEST">
+      <router-link class="header-profile-link" :to="ROUTES.GUEST" @click="handleIcons('guest')">
         <span class="header-profile-link-label">Sem notificações</span>
         <IconNotifications
           :classes="iconsPage.guest"
