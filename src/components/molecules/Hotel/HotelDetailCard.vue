@@ -7,7 +7,14 @@
   export default defineComponent({
     name: 'HotelDetailCard',
     components: { IconStar, IconEye, ButtonPrimary },
-    setup() {
+    props: {
+      onlyViewer: {
+        default: false,
+        required: false,
+        type: Boolean
+      }
+    },
+    setup(props) {
       const showDetails = ref('')
 
       const handleIconEyeClick = () => {
@@ -16,7 +23,8 @@
 
       return {
         handleIconEyeClick,
-        showDetails
+        showDetails,
+        props
       }
     }
   })
@@ -26,7 +34,7 @@
   <div class="hotel-detail-card">
     <div class="hotel-detail-card-header">
       <div class="hotel-detail-card-header-title">
-        <IconEye @handleIconEyeClick="handleIconEyeClick" />
+        <IconEye v-if="!props.onlyViewer" @handleIconEyeClick="handleIconEyeClick" />
         <h5 class="hotel-detail-card-header-title-content">Hotel BRDS</h5>
       </div>
       <div class="hotel-detail-card-header-rate">
@@ -53,7 +61,7 @@
       <p class="hotel-detail-card-capacity-total">99 quartos disponíveis de 200</p>
     </div>
     <div :class="['hotel-detail-card-booking', showDetails]">
-      <ButtonPrimary text="Reservar" />
+      <ButtonPrimary v-if="!onlyViewer" text="Reservar" />
     </div>
   </div>
 </template>
