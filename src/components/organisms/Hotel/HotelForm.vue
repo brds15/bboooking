@@ -38,7 +38,7 @@
     name: 'HotelForm',
     components: { ButtonPrimary, HotelFields, ContainerCard },
     setup() {
-      const state: HotelFormState = reactive({
+      const searchData: HotelFormState = reactive({
         checkinDate: {
           errorMessage: '',
           value: ''
@@ -61,14 +61,14 @@
         errors.forEach(error => {
           const [field] = error.path
 
-          if (field && state[field as keyof HotelFormState]) {
-            state[field as keyof HotelFormState].errorMessage = error.message
+          if (field && searchData[field as keyof HotelFormState]) {
+            searchData[field as keyof HotelFormState].errorMessage = error.message
           }
         })
       }
 
       const validateForm = () => {
-        const result = HotelFormStateSchema.safeParse(state)
+        const result = HotelFormStateSchema.safeParse(searchData)
 
         if (!result.success) {
           // eslint-disable-next-line
@@ -84,10 +84,10 @@
         validateForm()
         // eslint-disable-next-line
         console.log({
-          location: state.location,
-          checkinDate: state.checkinDate,
-          checkoutDate: state.checkoutDate,
-          guests: state.guests
+          location: searchData.location,
+          checkinDate: searchData.checkinDate,
+          checkoutDate: searchData.checkoutDate,
+          guests: searchData.guests
         })
       }
 
@@ -95,11 +95,11 @@
         field: K,
         { value }: FieldProps<string | number>
       ) => {
-        state[field].value = value
+        searchData[field].value = value
       }
 
       return {
-        state,
+        searchData,
         handleUpdateState,
         handleSearchHotels
       }
@@ -112,10 +112,10 @@
     <h1 class="hotel-form-title">Encontre sua estadia</h1>
     <form @submit.prevent="handleSearchHotels">
       <HotelFields
-        :checkinDate="state.checkinDate"
-        :checkoutDate="state.checkoutDate"
-        :guests="state.guests"
-        :location="state.location"
+        :checkinDate="searchData.checkinDate"
+        :checkoutDate="searchData.checkoutDate"
+        :guests="searchData.guests"
+        :location="searchData.location"
         @updateState="handleUpdateState"
       />
       <ButtonPrimary text="Buscar" type="submit" />
