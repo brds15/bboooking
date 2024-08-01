@@ -39,7 +39,7 @@
           name="location"
           label="Local"
           placeholder="Digite o local"
-          :error-message="location.errorMessage"
+          :errorMessage="location.errorMessage"
           :value="location.value"
           @onChangeInput="newValue => $emit('updateState', 'location', { value: newValue })"
         />
@@ -50,7 +50,7 @@
             max="10"
             label="Hóspedes"
             placeholder="Número de hóspedes"
-            :error-message="guests.errorMessage"
+            :errorMessage="guests.errorMessage"
             :value="guests.value"
             @onChangeInput="newValue => $emit('updateState', 'guests', { value: newValue })"
           />
@@ -61,7 +61,7 @@
           id="checkin"
           label="Data de Check-in"
           name="checkin"
-          :error-message="checkinDate.errorMessage"
+          :errorMessage="checkinDate.errorMessage"
           :value="checkinDate.value"
           @onChangeInput="newValue => $emit('updateState', 'checkinDate', { value: newValue })"
         />
@@ -69,7 +69,7 @@
           id="checkout"
           label="Data de Check-out"
           name="checkout"
-          :error-message="checkoutDate.errorMessage"
+          :errorMessage="checkoutDate.errorMessage"
           :value="checkoutDate.value"
           @onChangeInput="newValue => $emit('updateState', 'checkoutDate', { value: newValue })"
         />
