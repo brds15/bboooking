@@ -16,6 +16,7 @@
     },
     setup(props) {
       const showDetails = ref('')
+      const onlyForViewClasses = props.onlyViewer ? 'view' : ''
 
       const handleIconEyeClick = () => {
         showDetails.value = showDetails.value === '' ? 'hidden' : ''
@@ -23,6 +24,7 @@
 
       return {
         handleIconEyeClick,
+        onlyForViewClasses,
         showDetails,
         props
       }
@@ -46,7 +48,7 @@
       <span class="hotel-detail-card-second-address"> Av. Paulista 1050 </span>
       <p class="hotel-detail-card-second-price">R$ 300<span>/noite</span></p>
     </div>
-    <div :class="['hotel-detail-card-description', showDetails]">
+    <div :class="['hotel-detail-card-description', showDetails, onlyForViewClasses]">
       <h6 class="hotel-detail-card-description-title">Sobre o hotel</h6>
       <span class="hotel-detail-card-description-content">
         Situado no bairro agradável, a apenas 1 km do famoso Parque do Ibirapuera, o Gran Chevalier
@@ -146,6 +148,10 @@
       &-content {
         font-size: 0.8rem;
       }
+    }
+
+    &-description.view {
+      max-height: unset;
     }
 
     &-booking {
