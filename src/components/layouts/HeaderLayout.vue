@@ -114,6 +114,10 @@
           width: 100%;
         }
       }
+
+      .icon-notifications {
+        padding: 8px 14px;
+      }
     }
 
     @media (max-width: 992px) {
