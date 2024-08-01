@@ -54,5 +54,5 @@ Escolhi apenas um breakpoint para permitir o layout responsivel: 992px. Para dim
 
 Na criação do formuário para busca de hoteis foi criado componentes de inputs para que sejam reaproveitados no formulario de reserva de quartos. O stado foi definido como local, pois são parametros que vão ser usados para a busca a partir do próprio formulário.
 
-Decidi fazer o gerenciamento de stado do formulário de forma nativa com a estrutura de {campo: {valor, erro}, pois já é suficiente para esta aplicação.
+Decidi fazer o gerenciamento de stado do formulário de forma nativa com a estrutura de {campo: {valor, erro}, pois já é suficiente para esta aplicação. Zod foi escolhido para realizar o schema handler.
 ## To future / Para o futuro

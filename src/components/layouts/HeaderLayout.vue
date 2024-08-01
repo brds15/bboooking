@@ -23,7 +23,6 @@
 
 <style lang="scss" scoped>
   .header {
-    border: 2px solid green;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -10,7 +10,6 @@
 
 <style lang="scss" scoped>
   .content {
-    border: 2px solid red;
     overflow-y: auto;
   }
 </style>

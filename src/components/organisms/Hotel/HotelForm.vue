@@ -1,5 +1,6 @@
 <script lang="ts">
   import { defineComponent, reactive } from 'vue'
+  import { z, ZodIssue } from 'zod'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelFields from '@/components/molecules/Hotel/HotelFields.vue'
@@ -15,6 +16,23 @@
     guests: FieldProps<number>
     location: FieldProps<string>
   }
+
+  const StringSchema = z.object({
+    errorMessage: z.string(),
+    value: z.string().min(1, { message: 'Campo obrigatório' })
+  })
+
+  const NumberSchema = z.object({
+    errorMessage: z.string(),
+    value: z.number().min(1, { message: 'Campo obrigatório' })
+  })
+
+  const HotelFormStateSchema = z.object({
+    checkinDate: StringSchema,
+    checkoutDate: StringSchema,
+    guests: NumberSchema,
+    location: StringSchema
+  })
 
   export default defineComponent({
     name: 'HotelForm',
@@ -39,7 +57,31 @@
         }
       })
 
+      const updateErrors = (errors: ZodIssue[]) => {
+        errors.forEach(error => {
+          const [field] = error.path
+
+          if (field && state[field as keyof HotelFormState]) {
+            state[field as keyof HotelFormState].errorMessage = error.message
+          }
+        })
+      }
+
+      const validateForm = () => {
+        const result = HotelFormStateSchema.safeParse(state)
+
+        if (!result.success) {
+          // eslint-disable-next-line
+          console.log(result.error.errors)
+          updateErrors(result.error.errors)
+          return
+        }
+        // eslint-disable-next-line
+        console.log('foii')
+      }
+
       const handleSearchHotels = () => {
+        validateForm()
         // eslint-disable-next-line
         console.log({
           location: state.location,
