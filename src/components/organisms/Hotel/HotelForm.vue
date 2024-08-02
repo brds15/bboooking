@@ -36,7 +36,7 @@
 
   export default defineComponent({
     name: 'HotelForm',
-    components: { ButtonPrimary, HotelFields, ContainerCard },
+    components: { ButtonPrimary, ContainerCard, HotelFields },
     setup() {
       const searchData: SearchData = reactive({
         checkinDate: {
