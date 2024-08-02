@@ -1,15 +1,17 @@
 # BBOOOKING
+
 Application for (simulate) hotels bookings.
 É uma aplicação para (simular e) lidar com reservas de hoteis.
 
 # Goals / Objetivos
+
 - Hotels Seeking / Pesquisa de hotéis
 - Comparing options / Comparação de opções
 - Book rooms / Reserva de Quartos
 - Notification / Notificações
 
-
 # Characters / Caracteristicas
+
 - Vue 3
 - TypeScript, JS with strongly type power
 - Bootstrapped with Vue CLI
@@ -17,6 +19,7 @@ Application for (simulate) hotels bookings.
 - Eslint + Prettier for formatting rules and code quality
 
 ## Getting started / Para começar
+
 Execute these below commands / Execute os seguintes comandos
 
 ```sh
@@ -24,13 +27,16 @@ nvm install 18.18
 nvm use 18.18
 git clone git@github.com:brds15/bboooking
 cd bboooking
+cp .env.exemple .env # to create env file
 npm install # to install dependencies
+npm run api:server # to simule server
 npm run serve # open localhost
 ```
 
 ## Diary of developing / Diário do desenvolvimento
+
 Primeiro desafio foi analisar os requisitos para a criação deste MVP. Ao analisar uma boa tecnica que gosto de usar é o DDD, pois ele define e impoe limites e responsabilidade para cada dominio. Em minhas abstrações identifiquei: hotel, hospede(guest) e reserva(booking) como cada um, um domínio da aplicação.
-A partir deste ponto, pude separar as principais páginas do projeto. 
+A partir deste ponto, pude separar as principais páginas do projeto.
 
 Hotels -> HotelsPage - página home da aplicação, dedicada para pesquisar, comparar, filtrar e visualizar hoteis.
 Booking -> BookingPage - página dedicada para efetuar a reserva (bem como pagamento).
@@ -59,4 +65,9 @@ Na criação do formuário para busca de hoteis foi criado componentes de inputs
 Decidi fazer a gestão de estado no formulário de forma nativa com a estrutura de {campo: {valor, erro}, pois já é suficiente para esta aplicação. Zod foi escolhido para realizar o schema handler.
 
 A página Guest tem como objetivo exibir as notificações do usuário com o template GuestNotification. A estrutura de dados foi pensada para ser mais simples possível de apenas 1 array de string para que o escopo do software não fique complexo.
+
+Para mockar os dados foi escolhido o json-server, por ser uma lib extremamente simples e que pode ser usada no client.
+
+Dentro de services, foi criado uma estrutura de pasta para lidar com questões de API. A instancia foi configurada dentro da pasta configurations. Dentro da pasta moscks existe um arquivo db.json com os mocks das apis para integração com o json-server. Cada conjunto de api é separada pelo domnínio da aplicação e tem um arquivo próprio. No componente foi preferido utilizar then e catch por ser um código mais limpo, além de funcionar super bem com try catch.
+
 ## To future / Para o futuro

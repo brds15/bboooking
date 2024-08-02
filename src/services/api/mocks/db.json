@@ -1,0 +1,61 @@
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Hotel Sunshine",
+      "rate": 4.5,
+      "address": "123 Beach Avenue, Sydney",
+      "value": 250,
+      "about": "A beautiful hotel located near the beach with stunning views and excellent amenities.",
+      "capacity": 150,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 100
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 120
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Mountain Retreat",
+      "rate": 4.8,
+      "address": "456 Mountain Road, Blue Mountains",
+      "value": 300,
+      "about": "An exclusive retreat in the mountains offering tranquility and luxury.",
+      "capacity": 80,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 60
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 75
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "City Central Hotel",
+      "rate": 3.9,
+      "address": "789 Central Street, Sydney",
+      "value": 200,
+      "about": "A convenient hotel located in the heart of the city, close to all major attractions.",
+      "capacity": 200,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 150
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 180
+        }
+      ]
+    }
+  ]
+}
