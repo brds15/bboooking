@@ -12,6 +12,7 @@ const routes = [
   },
   {
     component: BookPage,
+    name: 'book',
     path: `${ROUTES.BOOK}/:hotelId`
   },
   {

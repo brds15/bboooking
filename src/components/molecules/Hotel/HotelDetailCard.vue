@@ -1,10 +1,12 @@
 <script lang="ts">
   import { computed, defineComponent, ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import getAvailableCapacity from '@/services/hotelServices'
+  import useHotelStore from '@/services/stores/hotel'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import IconEye from '@/components/atoms/icons/IconEye.vue'
   import IconStar from '@/components/atoms/icons/IconStar.vue'
-  import getAvailableCapacity from '@/services/hotelServices'
-  import useHotelStore from '@/services/stores/hotel'
+  import { ROUTES_NAME } from '@/constants/routes'
 
   export default defineComponent({
     name: 'HotelDetailCard',
@@ -17,6 +19,7 @@
       }
     },
     setup(props) {
+      const router = useRouter()
       const hotelStore = useHotelStore()
       const showDetails = ref('')
       const onlyForViewClasses = props.onlyViewer ? 'view' : ''
@@ -29,13 +32,20 @@
         showDetails.value = showDetails.value === '' ? 'hidden' : ''
       }
 
+      const handleRedirect = () => {
+        if (router) {
+          router.push({ name: ROUTES_NAME.BOOK, params: { hotelId: hotelStore.currentHotel.id } })
+        }
+      }
+
       return {
         availableRooms,
         hotelStore,
         onlyForViewClasses,
         props,
         showDetails,
-        handleIconEyeClick
+        handleIconEyeClick,
+        handleRedirect
       }
     }
   })
@@ -72,7 +82,7 @@
       </p>
     </div>
     <div :class="['hotel-detail-card-booking', showDetails]">
-      <ButtonPrimary v-if="!onlyViewer" text="Reservar" />
+      <ButtonPrimary v-if="!onlyViewer" text="Reservar" @click="handleRedirect" />
     </div>
   </div>
 </template>
