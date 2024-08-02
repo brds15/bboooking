@@ -118,6 +118,6 @@ Nos componentes, foi preferido utilizar `then` e `catch`, por ser um código mai
 
 
 ## To-do
-- utilizar o beforeEnter para alterar o icone selecionado de forma dinamica
-- preparar script githubactions
-- criar alguns testes
+- utilizar o beforeEnter para alterar o icone selecionado de forma dinamica - atualização prevista 02/08
+- preparar script githubactions - atualização prevista 03/08
+- criar alguns testes - atualização prevista 03/08
