@@ -21,7 +21,7 @@
     },
     {
       "id": 2,
-      "name": "Hotel Retreat",
+      "name": "Mountain Retreat",
       "rate": 4.8,
       "address": "456 Mountain Road, Blue Mountains",
       "value": 300,
@@ -54,6 +54,196 @@
         {
           "date": "2024-08-02",
           "capacityFilled": 180
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Lakeside Inn",
+      "rate": 4.3,
+      "address": "321 Lakeview Drive, Canberra",
+      "value": 220,
+      "about": "A peaceful hotel by the lake offering serene views and excellent service.",
+      "capacity": 90,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 70
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 85
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Desert Oasis Resort",
+      "rate": 4.7,
+      "address": "789 Desert Road, Alice Springs",
+      "value": 280,
+      "about": "A luxurious resort in the desert with top-notch amenities and services.",
+      "capacity": 100,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 90
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 95
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Urban Stay",
+      "rate": 4.0,
+      "address": "101 City Avenue, Melbourne",
+      "value": 210,
+      "about": "A modern hotel in the city with convenient access to shopping and dining.",
+      "capacity": 180,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 140
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 160
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Coastal Paradise Hotel",
+      "rate": 4.6,
+      "address": "456 Ocean Drive, Gold Coast",
+      "value": 260,
+      "about": "A seaside hotel offering stunning views and a relaxing atmosphere.",
+      "capacity": 120,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 110
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 115
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Forest Lodge",
+      "rate": 4.4,
+      "address": "789 Forest Lane, Tasmania",
+      "value": 230,
+      "about": "A cozy lodge in the forest with a warm atmosphere and great outdoor activities.",
+      "capacity": 70,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 50
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 60
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Island Escape",
+      "rate": 4.9,
+      "address": "123 Island Road, Whitsundays",
+      "value": 320,
+      "about": "A luxury hotel on an island offering breathtaking views and top-tier services.",
+      "capacity": 60,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 55
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 58
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Countryside Inn",
+      "rate": 3.8,
+      "address": "456 Countryside Road, Hunter Valley",
+      "value": 190,
+      "about": "A charming inn in the countryside offering a peaceful retreat and local wines.",
+      "capacity": 110,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 80
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 100
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Skyline Hotel",
+      "rate": 4.1,
+      "address": "789 Sky Avenue, Brisbane",
+      "value": 240,
+      "about": "A high-rise hotel offering panoramic views of the city skyline and modern amenities.",
+      "capacity": 130,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 100
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 110
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Riverside Hotel",
+      "rate": 4.2,
+      "address": "321 River Road, Perth",
+      "value": 220,
+      "about": "A riverside hotel offering scenic views and easy access to water activities.",
+      "capacity": 90,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 70
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 85
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Cultural Hotel",
+      "rate": 4.3,
+      "address": "123 Culture Street, Adelaide",
+      "value": 210,
+      "about": "A hotel located in the cultural district, close to museums and theaters.",
+      "capacity": 100,
+      "dates": [
+        {
+          "date": "2024-08-01",
+          "capacityFilled": 85
+        },
+        {
+          "date": "2024-08-02",
+          "capacityFilled": 90
         }
       ]
     }
