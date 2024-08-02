@@ -31,7 +31,7 @@ git clone git@github.com:brds15/bboooking
 cd bboooking
 cp .env.exemple .env # to create env file
 npm install # to install dependencies
-npm run api:server # to simule server
+npm run simulate # to simule server
 npm run serve # open localhost
 ```
 
