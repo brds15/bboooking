@@ -1,5 +1,6 @@
 <script lang="ts">
   import { defineComponent, onMounted } from 'vue'
+  import useHotelStore from '@/services/stores/hotel'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelCard from '@/components/molecules/Hotel/HotelCard.vue'
   import hotelApi from '@/services/api/hotelApi'
@@ -8,16 +9,29 @@
     name: 'HotelResults',
     components: { HotelCard, ContainerCard },
     setup() {
+      const hotelStore = useHotelStore()
+
+      // eslint-disable-next-line no-console
+      console.log('hotelStore::', hotelStore.hotelList)
+
       onMounted(async () => {
         hotelApi
           .findHotels()
           .then(response => {
             // eslint-disable-next-line no-console
             console.log('response', response)
+
+            if (response.data?.length) hotelStore.updateHotelList(response.data)
           })
           // eslint-disable-next-line no-console
           .catch(e => console.error('error::', e))
       })
+
+      window.stores = { hotelStore }
+
+      return {
+        hotelStore
+      }
     }
   })
 </script>
@@ -25,7 +39,7 @@
 <template>
   <div class="hotel-results">
     <ContainerCard classes="hotel-results-content">
-      <HotelCard /><HotelCard /><HotelCard /><HotelCard /><HotelCard />
+      <HotelCard v-for="item in hotelStore.hotelList" :key="item.id" :hotel="item" />
     </ContainerCard>
   </div>
 </template>

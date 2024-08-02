@@ -1,13 +1,26 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { computed, defineComponent } from 'vue'
   import IconStar from '@/components/atoms/icons/IconStar.vue'
   import ButtonSecondary from '@/components/atoms/buttons/ButtonSecondary.vue'
   import IconPin from '@/components/atoms/icons/IconPin.vue'
+  import { Hotel } from '@/types/hotels'
 
   export default defineComponent({
     name: 'HotelCard',
     components: { IconPin, ButtonSecondary, IconStar },
-    setup() {
+    props: {
+      hotel: {
+        type: Object as () => Hotel,
+        required: true
+      }
+    },
+    setup(props) {
+      const availableRooms = computed(() => {
+        const lastDate = props.hotel.dates[props.hotel.dates.length - 1]
+
+        return props.hotel.capacity - (lastDate?.capacityFilled ?? 0)
+      })
+
       const handleIconPinClick = () => {
         // eslint-disable-next-line
         console.log('handleIconPinClick')
@@ -21,6 +34,8 @@
       }
 
       return {
+        availableRooms,
+        props,
         handleIconPinClick,
         handleKeyDown
       }
@@ -34,18 +49,18 @@
       <img src="../../../assets/images/default-hotel.webp" alt="hotel" />
       <div class="hotel-card-header-content">
         <div class="hotel-card-header-content-title">
-          <h5>Hotel BRDS</h5>
+          <h5>{{ props.hotel.name }}</h5>
         </div>
         <div class="hotel-card-header-content-rate">
           <IconStar />
-          <span>5.0</span>
+          <span>{{ props.hotel.rate }}</span>
         </div>
-        <p class="hotel-card-header-content-price">R$ 300</p>
+        <p class="hotel-card-header-content-price">R$ {{ props.hotel.value }}</p>
       </div>
     </div>
     <div class="hotel-card-content">
-      <span class="hotel-card-content-address"> Av. Paulista 1050 </span>
-      <span class="hotel-card-content-capacity"> 99 quartos disponíveis de 200 </span>
+      <span class="hotel-card-content-address"> {{ props.hotel.address }} </span>
+      <span class="hotel-card-content-capacity"> {{ availableRooms }} quartos disponíveis de {{ props.hotel.capacity }} </span>
     </div>
     <div class="hotel-card-footer">
       <a class="hotel-card-footer-pin" @click="handleIconPinClick" @keydown="handleKeyDown">
@@ -176,9 +191,9 @@
         }
       }
 
-     &-content {
-       width: 100%;
-     }
+      &-content {
+        width: 100%;
+      }
 
       &-footer {
         flex-direction: column;
