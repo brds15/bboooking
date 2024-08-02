@@ -22,7 +22,10 @@ Application for (simulate) hotels bookings.
 
 # Getting started / Para começar
 
-Execute these below commands / Execute os seguintes comandos
+Execute these below commands / Execute os seguintes comandos.
+
+Prerequisites / Pre-requisitos:
+[nvm](https://github.com/nvm-sh/nvm) to change node version / para troca da versão do node. 
 
 ```sh
 nvm install 18.18
