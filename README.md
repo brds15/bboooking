@@ -1,7 +1,9 @@
 # BBOOOKING
 
 Application for (simulate) hotels bookings.
-É uma aplicação para (simular e) lidar com reservas de hoteis.
+É uma aplicação para (simular) lidar com reservas de hoteis.
+
+![home](screenshots/img.png)
 
 # Goals / Objetivos
 
@@ -18,7 +20,7 @@ Application for (simulate) hotels bookings.
 - Pinia as state management
 - Eslint + Prettier for formatting rules and code quality
 
-## Getting started / Para começar
+# Getting started / Para começar
 
 Execute these below commands / Execute os seguintes comandos
 
@@ -33,41 +35,87 @@ npm run api:server # to simule server
 npm run serve # open localhost
 ```
 
-## Diary of developing / Diário do desenvolvimento
+# Diary of developing / Diário do desenvolvimento
 
-Primeiro desafio foi analisar os requisitos para a criação deste MVP. Ao analisar uma boa tecnica que gosto de usar é o DDD, pois ele define e impoe limites e responsabilidade para cada dominio. Em minhas abstrações identifiquei: hotel, hospede(guest) e reserva(booking) como cada um, um domínio da aplicação.
-A partir deste ponto, pude separar as principais páginas do projeto.
+## Análise e Organização de Requisitos para o MVP
+🇧🇷
+### Análise dos Requisitos
+![draft](screenshots/draft.png)
 
-Hotels -> HotelsPage - página home da aplicação, dedicada para pesquisar, comparar, filtrar e visualizar hoteis.
-Booking -> BookingPage - página dedicada para efetuar a reserva (bem como pagamento).
-Guest -> GuestPage - página onde o hóspede pode visualizar a sua reserva e notificações sobre a sua própria reserva.
+O primeiro desafio foi analisar os requisitos para a criação deste MVP. Uma técnica que gosto de usar é o DDD (Domain-Driven Design), pois ele define e impõe limites e responsabilidades para cada domínio. Em minhas abstrações, identifiquei os seguintes domínios:
+- Hotel
+- Hóspede (Guest)
+- Reserva (Booking)
 
-Cada pagina adota a convenção de usar o Page como sufixo para identificar de forma rápida e fácil em importações a que tipo o componente é pertencente.
+### Principais Páginas do Projeto
+A partir deste ponto, pude separar as principais páginas do projeto:
 
-Ao configurar o vue-router, foi escohido usar WebHashHistory para facilitar questões de configuração, pois se trata de uma aplicação demo. Mas na vida real sei o impacto que isto teria no SEO.
+#### Hotels
+- **HotelsPage**: Página home da aplicação, dedicada para pesquisar, comparar, filtrar e visualizar hotéis.
 
-Para o design da aplicação adotei Atomic Design, por se de fácil entendimento, já é bem utilizada qualquer tipo e tamanho de software. Esse abordagem ajuda com que cada o componente tenha respondes limitadas ou únicas, uma boa prática no solid.
+#### Booking
+- **BookPage**: Página dedicada para efetuar a reserva (bem como pagamento).
 
-Com as pages já definidas e layout de interface na cabeça, fica mais claro como vão ser as divisões entre os componentes.
+#### Guest
+- **GuestPage**: Página onde o hóspede pode visualizar a sua reserva e notificações sobre a sua própria reserva.
 
-Todo sistema frontent deve ter os seus alicerces bem definidos. Isso quer dizer, que os containers pais devem estar além de bem definidos, estar claro no código quais são e as suas respectivas responsabilidades. Para isso, criei a pasta 'layouts' dentro de components.
-A pasta Layout foi definida para ter componentes que compoe um layout padrão do sistema. Estes que são compartilhados independente da página. Como Header, Content, Footer.
+Cada página adota a convenção de usar o sufixo "Page" para identificar de forma rápida e fácil nas importações a que tipo de componente pertence.
 
-Já as demais divisões intercomponentes seguem a divisão do Atomic Desing: atoms -> molecules -> organisms -> templates -> pages
+### Configuração do Vue Router
+Ao configurar o vue-router, foi escolhido usar `WebHashHistory` para facilitar questões de configuração, pois se trata de uma aplicação demo. Na vida real, sei o impacto que isso teria no SEO.
 
-Componentes de médio nível: molecules, organisms e templates, seguem a convenção de ter uma pasta com o nome de sua page, caso seja utilizada somente por uma page. Caso seja multicompartilhado, indepedentemente do componente, não utiliza esta convenção.
-Como nos componentes dentro de 'atoms', que são do mais baixo nívels (nativo HTML) e usado por todo e qualquer componente.
+### Design da Aplicação
+Para o design da aplicação, adotei o Atomic Design, por ser de fácil entendimento e já bem utilizado em qualquer tipo e tamanho de software. Essa abordagem ajuda a garantir que cada componente tenha responsabilidades limitadas ou únicas, uma boa prática no SOLID.
 
-Escolhi apenas um breakpoint para permitir o layout responsivel: 992px. Para diminuir o escopo e abrangencia, e com esta medida os containers já entram numa escala de tela para pequenos monitores e tabletes que podem ter um bom dimensionamento somado a práticas do uso de flex-box e grid-layout.
+Com as páginas já definidas e o layout de interface em mente, fica mais claro como serão as divisões entre os componentes.
 
-Na criação do formuário para busca de hoteis foi criado componentes de inputs para que sejam reaproveitados no formulario de reserva de quartos. O stado foi definido como local, pois são parametros que vão ser usados para a busca a partir do próprio formulário.
+### Definição dos Alicerces
+Todo sistema frontend deve ter seus alicerces bem definidos. Isso significa que os containers pais devem estar, além de bem definidos, claros no código quanto às suas respectivas responsabilidades. Para isso, criei a pasta `layouts` dentro de `components`.
 
-Decidi fazer a gestão de estado no formulário de forma nativa com a estrutura de {campo: {valor, erro}, pois já é suficiente para esta aplicação. Zod foi escolhido para realizar o schema handler.
+A pasta `layouts` foi definida para ter componentes que compõem um layout padrão do sistema, que são compartilhados independentemente da página. Exemplos incluem:
+- Header
+- Content
+- Footer
 
-A página Guest tem como objetivo exibir as notificações do usuário com o template GuestNotification. A estrutura de dados foi pensada para ser mais simples possível de apenas 1 array de string para que o escopo do software não fique complexo.
+### Divisão de Componentes
+As demais divisões intercomponentes seguem a divisão do Atomic Design, com algumas diferenças:
+- Atoms -> generico para uso generico
+- Molecules -> destinado a lógica de produto
+- Organisms -> destinado a lógica de produto
+- Templates -> destinado a lógica de produto
+- Pages -> destinado a lógica de produto
 
-Para mockar os dados foi escolhido o json-server, por ser uma lib extremamente simples e que pode ser usada no client.
+O uso de `molecules` e `organisms` como destinado a lógica de negócio (produto) para ter mais coesão. E também por ser um projeto apenas MVP. Pode ser facilmente realocado para ser generico.
 
-Dentro de services, foi criado uma estrutura de pasta para lidar com questões de API. A instancia foi configurada dentro da pasta configurations. Dentro da pasta moscks existe um arquivo db.json com os mocks das apis para integração com o json-server. Cada conjunto de api é separada pelo domnínio da aplicação e tem um arquivo próprio. No componente foi preferido utilizar then e catch por ser um código mais limpo, além de funcionar super bem com try catch.
+#### Componentes de Médio Nível
+Componentes de médio nível (molecules, organisms e templates) seguem a convenção de ter uma pasta com o nome de sua page, caso seja utilizada somente por uma page. Caso sejam multi-compartilhados, independentemente do componente, não utilizam esta convenção. Isso se aplica também aos componentes dentro de `atoms`, que são de nível mais baixo (nativo HTML) e usados por todos os componentes.
 
-## To future / Para o futuro
+### Layout Responsivo
+Escolhi apenas um breakpoint para permitir o layout responsivo: 992px. Para diminuir o escopo e abrangência, e com esta medida, os containers já entram numa escala de tela para pequenos monitores e tablets, que podem ter um bom dimensionamento somado a práticas do uso de flex-box e grid-layout.
+
+### Criação do Formulário de Busca de Hotéis
+Na criação do formulário para busca de hotéis, foram criados componentes de inputs para que sejam reaproveitados no formulário de reserva de quartos. O estado foi definido como local, pois são parâmetros que vão ser usados para a busca a partir do próprio formulário.
+
+### Gestão de Estado do Formulário
+Decidi fazer a gestão de estado no formulário de forma nativa com a estrutura `{campo: {valor, erro}}`, pois já é suficiente para esta aplicação. Zod foi escolhido para realizar o schema handler.
+
+### Página Guest
+A página Guest tem como objetivo exibir as notificações do usuário com o template `GuestNotification`. A estrutura de dados foi pensada para ser a mais simples possível, com apenas um array de strings, para que o escopo do software não fique complexo.
+
+### Mock de Dados
+Para mockar os dados, foi escolhido o json-server, por ser uma lib extremamente simples e que pode ser usada no cliente.
+
+### Estrutura de Pastas para Serviços
+Dentro de `services`, foi criada uma estrutura de pastas para lidar com questões de API. A instância foi configurada dentro da pasta `configurations`. Dentro da pasta `mocks`, existe um arquivo `db.json` com os mocks das APIs para integração com o json-server. Cada conjunto de APIs é separado pelo domínio da aplicação e tem um arquivo próprio.
+
+### Utilização do axios
+Escolhi utilizar o axios invés de fetch nativo por questão de compatibilidade. Além disso, o axios fornece uma flexibilidade referente a utilização de instâncias, bem como interceptors.  
+
+### Utilização de Then e Catch
+Nos componentes, foi preferido utilizar `then` e `catch`, por ser um código mais limpo, já que o axios já retorna uma promise.
+
+
+## To-do
+- utilizar o beforeEnter para alterar o icone selecionado de forma dinamica
+- preparar script githubaction
+- criar alguns testes
