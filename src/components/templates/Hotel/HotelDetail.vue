@@ -1,17 +1,25 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
   import HotelDetailCard from '@/components/molecules/Hotel/HotelDetailCard.vue'
+  import useHotelStore from '@/services/stores/hotel'
 
   export default defineComponent({
     name: 'HotelDetail',
-    components: { HotelDetailCard }
+    components: { HotelDetailCard },
+    setup() {
+      const hotelStore = useHotelStore()
+
+      return {
+        hotelStore
+      }
+    }
   })
 </script>
 
 <template>
   <div class="hotel-detail">
     <div class="hotel-detail-image">
-      <HotelDetailCard />
+      <HotelDetailCard v-if="hotelStore.currentHotel" :hotel="hotelStore.currentHotel" />
     </div>
   </div>
 </template>
@@ -24,8 +32,7 @@
     overflow: hidden;
 
     &-image {
-      background: url('~/src/assets/images/default-hotel.webp')
-        no-repeat center;
+      background: url('~/src/assets/images/default-hotel.webp') no-repeat center;
       background-size: cover;
       display: flex;
       flex-direction: column;

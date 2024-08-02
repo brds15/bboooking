@@ -1,0 +1,3 @@
+const MAX_ITEMS_TO_COMPARE = 3
+
+export default MAX_ITEMS_TO_COMPARE

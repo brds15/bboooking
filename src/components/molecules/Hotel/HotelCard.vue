@@ -1,41 +1,52 @@
 <script lang="ts">
   import { computed, defineComponent } from 'vue'
-  import IconStar from '@/components/atoms/icons/IconStar.vue'
+  import useHotelStore from '@/services/stores/hotel'
+  import getAvailableCapacity from '@/services/hotelServices'
+  import MAX_ITEMS_TO_COMPARE from '@/constants/hotel'
+  import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import ButtonSecondary from '@/components/atoms/buttons/ButtonSecondary.vue'
   import IconPin from '@/components/atoms/icons/IconPin.vue'
+  import IconStar from '@/components/atoms/icons/IconStar.vue'
   import { Hotel } from '@/types/hotels'
 
   export default defineComponent({
     name: 'HotelCard',
-    components: { IconPin, ButtonSecondary, IconStar },
+    components: { ButtonPrimary, IconPin, ButtonSecondary, IconStar },
     props: {
       hotel: {
         type: Object as () => Hotel,
         required: true
+      },
+      onlyViewer: {
+        default: false,
+        required: false,
+        type: Boolean
       }
     },
     setup(props) {
-      const availableRooms = computed(() => {
-        const lastDate = props.hotel.dates[props.hotel.dates.length - 1]
+      const hotelStore = useHotelStore()
 
-        return props.hotel.capacity - (lastDate?.capacityFilled ?? 0)
-      })
+      const availableRooms = computed(() =>
+        getAvailableCapacity(props.hotel.dates, props.hotel.capacity)
+      )
 
-      const handleIconPinClick = () => {
-        // eslint-disable-next-line
-        console.log('handleIconPinClick')
+      const handleIconPinClick = (hotelId: number) => {
+        hotelStore.updateCompareHotelList(hotelId)
       }
 
-      const handleKeyDown = (e: KeyboardEvent) => {
+      const handleKeyDown = (e: KeyboardEvent, hotelId: number) => {
         if (e.key === 'p') {
-          // eslint-disable-next-line
-          console.log('handleIconPinClick')
+          handleIconPinClick(hotelId)
         }
       }
 
+      const canCompare = () => !props.onlyViewer && hotelStore.compareHotelList.length < MAX_ITEMS_TO_COMPARE
+
       return {
         availableRooms,
+        hotelStore,
         props,
+        canCompare,
         handleIconPinClick,
         handleKeyDown
       }
@@ -60,14 +71,24 @@
     </div>
     <div class="hotel-card-content">
       <span class="hotel-card-content-address"> {{ props.hotel.address }} </span>
-      <span class="hotel-card-content-capacity"> {{ availableRooms }} quartos disponíveis de {{ props.hotel.capacity }} </span>
+      <span class="hotel-card-content-capacity"> {{ availableRooms }} quartos </span>
     </div>
     <div class="hotel-card-footer">
-      <a class="hotel-card-footer-pin" @click="handleIconPinClick" @keydown="handleKeyDown">
+      <a
+        v-if="canCompare()"
+        class="hotel-card-footer-pin"
+        @click="handleIconPinClick(props.hotel.id)"
+        @keydown="e => handleKeyDown(e, props.hotel.id)"
+      >
         <IconPin />
         <span>Comparar</span>
       </a>
-      <ButtonSecondary text="Detalhes" />
+      <ButtonPrimary
+        v-else-if="props.onlyViewer"
+        text="Remover"
+        @click="hotelStore.removeItemCompareHotelList(props.hotel.id)"
+      />
+      <ButtonSecondary @click="hotelStore.updateCurrentHotel(props.hotel.id)" text="Detalhes" />
     </div>
   </div>
 </template>
@@ -81,7 +102,9 @@
     flex-grow: 1;
     flex-wrap: nowrap;
     gap: 8px;
+    justify-content: space-between;
     max-width: 50%;
+    min-width: 264px;
     overflow: hidden;
     padding: 18px;
     width: 48%;

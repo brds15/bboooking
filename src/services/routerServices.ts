@@ -6,9 +6,22 @@ import GuestPage from '@/components/pages/GuestPage.vue'
 import ROUTES from '@/constants/routes'
 
 const routes = [
-  { path: ROUTES.BOOK, component: BookPage },
-  { path: ROUTES.GUEST, component: GuestPage },
-  { path: ROUTES.HOME, component: HotelPage }
+  {
+    component: BookPage,
+    path: ROUTES.BOOK
+  },
+  {
+    component: BookPage,
+    path: `${ROUTES.BOOK}/:hotelId`
+  },
+  {
+    component: GuestPage,
+    path: ROUTES.GUEST
+  },
+  {
+    component: HotelPage,
+    path: ROUTES.HOME
+  }
 ]
 
 const router = createRouter({

@@ -1,8 +1,10 @@
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
+  import { computed, defineComponent, ref } from 'vue'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import IconEye from '@/components/atoms/icons/IconEye.vue'
   import IconStar from '@/components/atoms/icons/IconStar.vue'
+  import getAvailableCapacity from '@/services/hotelServices'
+  import useHotelStore from '@/services/stores/hotel'
 
   export default defineComponent({
     name: 'HotelDetailCard',
@@ -15,52 +17,59 @@
       }
     },
     setup(props) {
+      const hotelStore = useHotelStore()
       const showDetails = ref('')
       const onlyForViewClasses = props.onlyViewer ? 'view' : ''
+
+      const availableRooms = computed(() =>
+        getAvailableCapacity(hotelStore.currentHotel.dates, hotelStore.currentHotel.capacity)
+      )
 
       const handleIconEyeClick = () => {
         showDetails.value = showDetails.value === '' ? 'hidden' : ''
       }
 
       return {
-        handleIconEyeClick,
+        availableRooms,
+        hotelStore,
         onlyForViewClasses,
+        props,
         showDetails,
-        props
+        handleIconEyeClick
       }
     }
   })
 </script>
 
 <template>
-  <div class="hotel-detail-card">
+  <div v-if="hotelStore.currentHotel.name" class="hotel-detail-card">
     <div class="hotel-detail-card-header">
       <div class="hotel-detail-card-header-title">
         <IconEye v-if="!props.onlyViewer" @handleIconEyeClick="handleIconEyeClick" />
-        <h5 class="hotel-detail-card-header-title-content">Hotel BRDS</h5>
+        <h5 class="hotel-detail-card-header-title-content">{{ hotelStore.currentHotel.name }}</h5>
       </div>
       <div class="hotel-detail-card-header-rate">
         <IconStar />
-        <span>5.0</span>
+        <span>{{ hotelStore.currentHotel.rate }}</span>
       </div>
     </div>
     <div :class="['hotel-detail-card-second', showDetails]">
-      <span class="hotel-detail-card-second-address"> Av. Paulista 1050 </span>
-      <p class="hotel-detail-card-second-price">R$ 300<span>/noite</span></p>
+      <span class="hotel-detail-card-second-address"> {{ hotelStore.currentHotel.address }} </span>
+      <p class="hotel-detail-card-second-price">
+        R$ {{ hotelStore.currentHotel.value }}
+        <span>/noite</span>
+      </p>
     </div>
     <div :class="['hotel-detail-card-description', showDetails, onlyForViewClasses]">
       <h6 class="hotel-detail-card-description-title">Sobre o hotel</h6>
       <span class="hotel-detail-card-description-content">
-        Situado no bairro agradável, a apenas 1 km do famoso Parque do Ibirapuera, o Gran Chevalier
-        Hotel oferece acomodações elegantes com Wi-Fi e um buffet de café da manhã gratuitos. Os
-        quartos tem uma decoração sofisticada e dispõem dar-condicionado e TV de LCD com canais a
-        cabo. Além disso, cofres estão disponíveis na recepção 24h. O Gran Chevalier Hotel fornece
-        um restaurante e um bar no local, bem como serviço de quarto. Você também poderá desfrutar
-        de várias opções gastronômicas regionais e internacionais a menos de 2 minutos a pé.
+        {{ hotelStore.currentHotel.about }}
       </span>
     </div>
     <div :class="['hotel-detail-card-capacity', showDetails]">
-      <p class="hotel-detail-card-capacity-total">99 quartos disponíveis de 200</p>
+      <p class="hotel-detail-card-capacity-total">
+        {{ availableRooms }} quartos disponíveis de {{ hotelStore.currentHotel.capacity }}
+      </p>
     </div>
     <div :class="['hotel-detail-card-booking', showDetails]">
       <ButtonPrimary v-if="!onlyViewer" text="Reservar" />

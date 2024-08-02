@@ -1,4 +1,4 @@
-export interface Date {
+export interface HotelDate {
   capacityFilled: number
   date: string
 }
@@ -7,7 +7,7 @@ export interface Hotel {
   about: string
   address: string
   capacity: number
-  dates: Date[]
+  dates: HotelDate[]
   id: number
   name: string
   rate: number
