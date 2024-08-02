@@ -37,9 +37,11 @@ npm run serve # open localhost
 
 # Diary of developing / Diário do desenvolvimento
 
-## Análise e Organização de Requisitos para o MVP
+
 🇧🇷
 ### Análise dos Requisitos
+Esboço inicial
+
 ![draft](screenshots/draft.png)
 
 O primeiro desafio foi analisar os requisitos para a criação deste MVP. Uma técnica que gosto de usar é o DDD (Domain-Driven Design), pois ele define e impõe limites e responsabilidades para cada domínio. Em minhas abstrações, identifiquei os seguintes domínios:
@@ -103,7 +105,7 @@ Decidi fazer a gestão de estado no formulário de forma nativa com a estrutura 
 A página Guest tem como objetivo exibir as notificações do usuário com o template `GuestNotification`. A estrutura de dados foi pensada para ser a mais simples possível, com apenas um array de strings, para que o escopo do software não fique complexo.
 
 ### Mock de Dados
-Para mockar os dados, foi escolhido o json-server, por ser uma lib extremamente simples e que pode ser usada no cliente.
+Para mockar os dados, foi escolhido o `json-server`, por ser uma lib extremamente simples e que pode ser usada no cliente.
 
 ### Estrutura de Pastas para Serviços
 Dentro de `services`, foi criada uma estrutura de pastas para lidar com questões de API. A instância foi configurada dentro da pasta `configurations`. Dentro da pasta `mocks`, existe um arquivo `db.json` com os mocks das APIs para integração com o json-server. Cada conjunto de APIs é separado pelo domínio da aplicação e tem um arquivo próprio.
