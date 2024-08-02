@@ -13,8 +13,8 @@
 
   const iconsPage = reactive<IconsPage>({
     book: '',
-    guest: 'checked',
-    home: ''
+    guest: '',
+    home: 'checked'
   })
 
   const resetIconsPage = () => {
