@@ -1,6 +1,7 @@
 <script lang="ts">
   import { defineComponent, reactive } from 'vue'
   import { z, ZodIssue } from 'zod'
+  import useGuestStore from '@/services/stores/guest'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import InputText from '@/components/atoms/inputs/InputText.vue'
@@ -36,6 +37,7 @@
       InputText
     },
     setup() {
+      const guestStore = useGuestStore()
       const guestData = reactive<GuestData>({
         cardCode: { errorMessage: '', value: '' },
         cardExpirationDate: { errorMessage: '', value: '' },
@@ -76,6 +78,8 @@
       const handleSubmit = () => {
         // eslint-disable-next-line
         console.log('dados de reserva::', guestData)
+
+        guestStore.handleAddNotification('Hotel reservado com sucesso!')
 
         validateForm()
       }

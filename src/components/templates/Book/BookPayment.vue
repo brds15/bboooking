@@ -48,14 +48,14 @@
     flex-wrap: wrap;
     gap: 2%;
     justify-content: space-around;
-  }
 
-  .book-payment-error {
-    color: $black-800;
-    display: flex;
-    font-size: 1.4rem;
-    font-weight: 600;
-    justify-content: center;
-    margin-top: 56px;
+    &-error {
+      color: $black-800;
+      display: flex;
+      font-size: 1.4rem;
+      font-weight: 600;
+      justify-content: center;
+      margin-top: 56px;
+    }
   }
 </style>

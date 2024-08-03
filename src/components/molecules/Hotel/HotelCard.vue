@@ -85,7 +85,7 @@
       </a>
       <ButtonPrimary
         v-else-if="props.onlyViewer"
-        text="Remover"
+        text="Desfixar"
         @click="hotelStore.removeItemCompareHotelList(props.hotel.id)"
       />
       <ButtonSecondary @click="hotelStore.updateCurrentHotel(props.hotel.id)" text="Detalhes" />

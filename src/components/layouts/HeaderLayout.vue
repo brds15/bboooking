@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { reactive } from 'vue'
+  import useGuestStore from '@/services/stores/guest'
   import IconNotifications from '@/components/atoms/icons/IconNotifications.vue'
   import IconMap from '@/components/atoms/icons/IconMap.vue'
   import IconLuggage from '@/components/atoms/icons/IconLuggage.vue'
@@ -10,6 +11,8 @@
     guest: '' | 'checked'
     home: '' | 'checked'
   }
+
+  const guestStore = useGuestStore()
 
   const iconsPage = reactive<IconsPage>({
     book: '',
@@ -46,7 +49,7 @@
     </div>
     <div class="header-profile">
       <router-link class="header-profile-link" :to="ROUTES.GUEST" @click="handleIcons('guest')">
-        <span class="header-profile-link-label">Sem notificações</span>
+        <span class="header-profile-link-label">{{ guestStore.notificationStatus }}</span>
         <IconNotifications
           :classes="iconsPage.guest"
           @handleIconNotificationsClick="handleIcons('guest')"
