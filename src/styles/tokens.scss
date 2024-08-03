@@ -1,1 +1,6 @@
+@use 'colors.scss' as varcolor;
+
 $border-radius-width: 32px;
+$box-shadow-md:
+  4px 6px -1px varcolor.$black-800,
+  0 2px 4px -2px varcolor.$black-800;

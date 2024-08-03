@@ -27,6 +27,7 @@
 <style scoped lang="scss">
   .hotel-detail {
     border-radius: $border-radius-width;
+    box-shadow: $box-shadow-md;
     grid-area: detail;
     height: 800px;
     overflow: hidden;
@@ -36,8 +37,8 @@
       background-size: cover;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
       height: 100%;
+      justify-content: flex-end;
       padding: 24px;
       width: 100%;
     }
