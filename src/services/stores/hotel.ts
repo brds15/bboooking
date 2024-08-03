@@ -5,8 +5,8 @@ import MAX_ITEMS_TO_COMPARE from '@/constants/hotel'
 const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
-    currentHotel: {} as Hotel,
     compareHotelList: [] as Hotel[],
+    currentHotel: {} as Hotel,
     hotelList: [] as Hotel[]
   }),
   getters: {
