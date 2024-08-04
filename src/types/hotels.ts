@@ -13,3 +13,21 @@ export interface Hotel {
   rate: number
   value: number
 }
+
+export type AllOrders = 'asc' | 'desc' | ''
+
+export type SortKeys = 'value' | 'rate'
+
+export interface OrdernateValues<T> {
+  key: SortKeys
+  label: string
+  value: T
+}
+
+export interface Ordenate {
+  BY_PRICE_ASC: OrdernateValues<'asc'>
+  BY_PRICE_DESC: OrdernateValues<'desc'>
+  BY_RATE: OrdernateValues<'desc'>
+}
+
+export type ActiveOrderType = 'BY_PRICE_ASC' | 'BY_PRICE_DESC' | 'BY_RATE'

@@ -138,6 +138,7 @@
     &-second {
       &-address {
         font-size: 0.9rem;
+        padding: 0 8px 0 0;
       }
 
       &-price {

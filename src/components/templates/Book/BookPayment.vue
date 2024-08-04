@@ -1,10 +1,10 @@
 <script lang="ts">
   import { defineComponent, onBeforeMount, ref } from 'vue'
   import { useRoute } from 'vue-router'
+  import useHotelStore from '@/services/stores/hotel'
   import BookHotelInfo from '@/components/organisms/Book/BookHotelInfo.vue'
   import BookGuestInfo from '@/components/organisms/Book/BookGuestInfo.vue'
   import ROUTES from '@/constants/routes'
-  import useHotelStore from '@/services/stores/hotel'
 
   export default defineComponent({
     name: 'BookPayment',

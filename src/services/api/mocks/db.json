@@ -22,7 +22,7 @@
     {
       "id": 2,
       "name": "Mountain Retreat",
-      "rate": 4.8,
+      "rate": 4.9,
       "address": "456 Mountain Road, Blue Mountains",
       "value": 300,
       "about": "An exclusive retreat in the mountains offering tranquility and luxury.",
@@ -155,7 +155,7 @@
     {
       "id": 9,
       "name": "Island Escape",
-      "rate": 4.9,
+      "rate": 4.8,
       "address": "123 Island Road, Whitsundays",
       "value": 320,
       "about": "A luxury hotel on an island offering breathtaking views and top-tier services.",

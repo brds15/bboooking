@@ -1,13 +1,15 @@
 import { defineStore } from 'pinia'
-import { Hotel } from '@/types/hotels'
+import { ActiveOrderType, AllOrders, Hotel, SortKeys } from '@/types/hotels'
 import MAX_ITEMS_TO_COMPARE from '@/constants/hotel'
 
 const useHotelStore = defineStore({
   id: 'hotel',
   state: () => ({
+    activeOrder: '' as ActiveOrderType | '',
     compareHotelList: [] as Hotel[],
     currentHotel: {} as Hotel,
-    hotelList: [] as Hotel[]
+    hotelList: [] as Hotel[],
+    orderateHotelList: [] as Hotel[]
   }),
   getters: {
     hotelById: state => (id: number) => {
@@ -43,6 +45,22 @@ const useHotelStore = defineStore({
     },
     removeItemCompareHotelList(id: number): void {
       this.compareHotelList = this.compareHotelList.filter(hotel => hotel.id !== id)
+    },
+    resetOrderHotelList(): void {
+      this.orderateHotelList = []
+      this.activeOrder = ''
+    },
+    updateActiveOrder(orderType: ActiveOrderType): void {
+      this.activeOrder = orderType
+    },
+    orderHotelListByKey(order: AllOrders, key: SortKeys): void {
+      const newList: Hotel[] = Object.assign(this.hotelList)
+
+      this.orderateHotelList = newList.sort((a, b) => {
+        const compare = a[key] - b[key]
+
+        return order === 'asc' ? compare : -compare
+      })
     }
   }
 })

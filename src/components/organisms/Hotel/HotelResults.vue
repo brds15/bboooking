@@ -4,23 +4,18 @@
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelCard from '@/components/molecules/Hotel/HotelCard.vue'
   import hotelApi from '@/services/api/hotelApi'
+  import HotelOrderFilters from '@/components/molecules/Hotel/HotelOrderFilters.vue'
 
   export default defineComponent({
     name: 'HotelResults',
-    components: { HotelCard, ContainerCard },
+    components: { HotelOrderFilters, HotelCard, ContainerCard },
     setup() {
       const hotelStore = useHotelStore()
-
-      // eslint-disable-next-line no-console
-      console.log('hotelStore::', hotelStore.hotelList)
 
       onMounted(async () => {
         hotelApi
           .findHotels()
           .then(response => {
-            // eslint-disable-next-line no-console
-            console.log('response', response)
-
             if (response.data?.length) hotelStore.updateHotelList(response.data)
           })
           // eslint-disable-next-line no-console
@@ -37,7 +32,7 @@
 </script>
 
 <template>
-  <div class="hotel-results">
+  <div v-if="hotelStore.hotelList.length > 0" class="hotel-results">
     <ContainerCard v-if="hotelStore.compareHotelList?.length > 0" classes="hotel-results-compare">
       <div class="hotel-results-compare-header">
         <h1 class="hotel-results-compare-header-title">Fixado para comparação</h1>
@@ -51,8 +46,14 @@
         />
       </div>
     </ContainerCard>
-    <ContainerCard classes="hotel-results-content">
-      <HotelCard v-for="item in hotelStore.hotelList" :key="item.id" :hotel="item" />
+    <ContainerCard classes="hotel-results-list">
+      <HotelOrderFilters />
+      <div v-if="hotelStore.orderateHotelList.length > 0" class="hotel-results-list-content">
+        <HotelCard v-for="item in hotelStore.orderateHotelList" :key="item.id" :hotel="item" />
+      </div>
+      <div v-else class="hotel-results-list-content">
+        <HotelCard v-for="item in hotelStore.hotelList" :key="item.id" :hotel="item" />
+      </div>
     </ContainerCard>
   </div>
 </template>
@@ -86,17 +87,18 @@
         gap: 16px;
         justify-content: flex-start;
         overflow-x: scroll;
-        padding: 0 8px;
       }
     }
 
-    &-content {
-      align-items: stretch;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 16px;
+    &-list {
+      &-content {
+        align-items: stretch;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 16px;
+      }
     }
   }
 </style>

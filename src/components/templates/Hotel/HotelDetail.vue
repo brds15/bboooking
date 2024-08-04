@@ -1,7 +1,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import HotelDetailCard from '@/components/molecules/Hotel/HotelDetailCard.vue'
   import useHotelStore from '@/services/stores/hotel'
+  import HotelDetailCard from '@/components/molecules/Hotel/HotelDetailCard.vue'
 
   export default defineComponent({
     name: 'HotelDetail',
