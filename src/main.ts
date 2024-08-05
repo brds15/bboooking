@@ -2,6 +2,7 @@ import router from '@/services/routerServices'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
+import "vue-loading-skeleton/dist/style.css"
 
 const pinia = createPinia()
 

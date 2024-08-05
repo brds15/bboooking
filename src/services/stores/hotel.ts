@@ -12,6 +12,8 @@ const useHotelStore = defineStore({
     orderateHotelList: [] as Hotel[]
   }),
   getters: {
+    activeHotelList: state =>
+      state.orderateHotelList.length > 0 ? state.orderateHotelList : state.hotelList,
     hotelById: state => (id: number) => {
       const result = state.hotelList.find(hotel => hotel.id === id)
 

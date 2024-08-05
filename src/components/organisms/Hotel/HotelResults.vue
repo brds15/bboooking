@@ -2,13 +2,14 @@
   import { defineComponent, onMounted } from 'vue'
   import useHotelStore from '@/services/stores/hotel'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
-  import HotelCard from '@/components/molecules/Hotel/HotelCard.vue'
   import hotelApi from '@/services/api/hotelApi'
+  import HotelCard from '@/components/molecules/Hotel/HotelCard.vue'
   import HotelOrderFilters from '@/components/molecules/Hotel/HotelOrderFilters.vue'
+  import { Skeleton } from 'vue-loading-skeleton'
 
   export default defineComponent({
     name: 'HotelResults',
-    components: { HotelOrderFilters, HotelCard, ContainerCard },
+    components: { Skeleton, HotelOrderFilters, HotelCard, ContainerCard },
     setup() {
       const hotelStore = useHotelStore()
 
@@ -48,13 +49,16 @@
     </ContainerCard>
     <ContainerCard classes="hotel-results-list">
       <HotelOrderFilters />
-      <div v-if="hotelStore.orderateHotelList.length > 0" class="hotel-results-list-content">
-        <HotelCard v-for="item in hotelStore.orderateHotelList" :key="item.id" :hotel="item" />
+      <div v-if="hotelStore.activeHotelList.length > 0" class="hotel-results-list-content">
+        <HotelCard v-for="item in hotelStore.activeHotelList" :key="item.id" :hotel="item" />
       </div>
       <div v-else class="hotel-results-list-content">
-        <HotelCard v-for="item in hotelStore.hotelList" :key="item.id" :hotel="item" />
+        <h1>Sem resultados para busca atual.</h1>
       </div>
     </ContainerCard>
+  </div>
+  <div class="hotel-results" v-else>
+    <Skeleton height="500px" />
   </div>
 </template>
 
