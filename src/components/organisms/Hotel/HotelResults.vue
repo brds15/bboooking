@@ -1,10 +1,10 @@
 <script lang="ts">
   import { defineComponent, onBeforeMount } from 'vue'
-  import useHotelStore from '@/services/stores/hotel'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelCard from '@/components/molecules/Hotel/HotelCard.vue'
   import HotelOrderFilters from '@/components/molecules/Hotel/HotelOrderFilters.vue'
   import { Skeleton } from 'vue-loading-skeleton'
+  import useHotelStore from '@/services/stores/hotel'
 
   export default defineComponent({
     name: 'HotelResults',
@@ -26,7 +26,7 @@
 </script>
 
 <template>
-  <div v-if="hotelStore.hotelList.length > 0" class="hotel-results">
+  <div v-if="!hotelStore.isLoading" class="hotel-results">
     <ContainerCard v-if="hotelStore.compareHotelList?.length > 0" classes="hotel-results-compare">
       <div class="hotel-results-compare-header">
         <h1 class="hotel-results-compare-header-title">Fixado para comparação</h1>

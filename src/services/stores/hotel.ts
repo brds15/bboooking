@@ -9,6 +9,7 @@ const useHotelStore = defineStore({
     activeOrder: '' as ActiveOrderType | '',
     compareHotelList: [] as Hotel[],
     currentHotel: {} as Hotel,
+    isLoading: false as Boolean,
     hotelList: [] as Hotel[],
     orderateHotelList: [] as Hotel[]
   }),
@@ -66,6 +67,8 @@ const useHotelStore = defineStore({
       })
     },
     loadHotels(): void {
+      this.isLoading = true
+
       hotelApi
         .findHotels()
         .then(response => {
@@ -73,8 +76,12 @@ const useHotelStore = defineStore({
         })
         // eslint-disable-next-line no-console
         .catch(e => console.error('error::', e))
+        .finally(() => {
+          this.isLoading = false
+        })
     },
     loadHotelsByParams(params: SearchData): void {
+      this.isLoading = true
       hotelApi
         .findHotelsByParams(params)
         .then(response => {
@@ -82,6 +89,9 @@ const useHotelStore = defineStore({
         })
         // eslint-disable-next-line no-console
         .catch(e => console.error('error::', e))
+        .finally(() => {
+          this.isLoading = false
+        })
     }
   }
 })
