@@ -44,6 +44,8 @@
     }
 
     @media (max-width: 992px) {
+      border-radius: unset;
+      box-shadow: unset;
       height: 100%;
 
       &-image {
