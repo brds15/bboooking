@@ -2,20 +2,12 @@
   import { defineComponent, reactive } from 'vue'
   import { z, ZodIssue } from 'zod'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
+  import ButtonSecondary from '@/components/atoms/buttons/ButtonSecondary.vue'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelFields from '@/components/molecules/Hotel/HotelFields.vue'
-
-  export interface FieldProps<T> {
-    errorMessage?: string
-    value: T
-  }
-
-  interface SearchData {
-    checkinDate: FieldProps<string>
-    checkoutDate: FieldProps<string>
-    guests: FieldProps<number>
-    location: FieldProps<string>
-  }
+  import hotelApi from '@/services/api/hotelApi'
+  import useHotelStore from '@/services/stores/hotel'
+  import { FieldProps, SearchData } from '@/types/hotels'
 
   const DEFAULT_MESSAGE = 'Campo obrigatório'
 
@@ -38,8 +30,9 @@
 
   export default defineComponent({
     name: 'HotelForm',
-    components: { ButtonPrimary, ContainerCard, HotelFields },
+    components: { ButtonSecondary, ButtonPrimary, ContainerCard, HotelFields },
     setup() {
+      const hotelStore = useHotelStore()
       const searchData: SearchData = reactive({
         checkinDate: {
           errorMessage: '',
@@ -91,6 +84,14 @@
           checkoutDate: searchData.checkoutDate,
           guests: searchData.guests
         })
+
+        hotelApi
+          .findHotelsByParams(searchData)
+          .then(response => {
+            if (response.data?.length) hotelStore.updateHotelList(response.data)
+          })
+          // eslint-disable-next-line no-console
+          .catch(e => console.error('error::', e))
       }
 
       const handleUpdateState = <K extends keyof SearchData>(
@@ -100,10 +101,13 @@
         searchData[field].value = value
       }
 
+      const handleResetSearch = () => {}
+
       return {
         searchData,
-        handleUpdateState,
-        handleSearchHotels
+        handleResetSearch,
+        handleSearchHotels,
+        handleUpdateState
       }
     }
   })
@@ -120,6 +124,7 @@
         :location="searchData.location"
         @updateState="handleUpdateState"
       />
+      <ButtonSecondary text="Ver todos" type="button" @click.prevent="handleResetSearch" />
       <ButtonPrimary text="Buscar" type="submit" />
     </form>
   </ContainerCard>

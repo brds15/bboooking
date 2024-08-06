@@ -3,7 +3,7 @@
   import InputDate from '@/components/atoms/inputs/InputDate.vue'
   import InputNumber from '@/components/atoms/inputs/InputNumber.vue'
   import InputText from '@/components/atoms/inputs/InputText.vue'
-  import { FieldProps } from '@/components/organisms/Hotel/HotelForm.vue'
+  import { FieldProps } from '@/types/hotels'
 
   export default defineComponent({
     name: 'HotelFields',

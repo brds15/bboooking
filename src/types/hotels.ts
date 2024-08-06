@@ -14,6 +14,18 @@ export interface Hotel {
   value: number
 }
 
+export interface FieldProps<T> {
+  errorMessage?: string
+  value: T
+}
+
+export interface SearchData {
+  checkinDate: FieldProps<string>
+  checkoutDate: FieldProps<string>
+  guests: FieldProps<number>
+  location: FieldProps<string>
+}
+
 export type AllOrders = 'asc' | 'desc' | ''
 
 export type SortKeys = 'value' | 'rate'

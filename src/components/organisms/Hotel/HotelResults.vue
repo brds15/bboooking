@@ -2,7 +2,6 @@
   import { defineComponent, onMounted } from 'vue'
   import useHotelStore from '@/services/stores/hotel'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
-  import hotelApi from '@/services/api/hotelApi'
   import HotelCard from '@/components/molecules/Hotel/HotelCard.vue'
   import HotelOrderFilters from '@/components/molecules/Hotel/HotelOrderFilters.vue'
   import { Skeleton } from 'vue-loading-skeleton'
@@ -14,13 +13,7 @@
       const hotelStore = useHotelStore()
 
       onMounted(async () => {
-        hotelApi
-          .findHotels()
-          .then(response => {
-            if (response.data?.length) hotelStore.updateHotelList(response.data)
-          })
-          // eslint-disable-next-line no-console
-          .catch(e => console.error('error::', e))
+        hotelStore.loadHotels()
       })
 
       window.stores = { hotelStore }
