@@ -27,29 +27,31 @@
     location: stringSchema
   })
 
+  const INITIAL_STATE = {
+    checkinDate: {
+      errorMessage: '',
+      value: ''
+    },
+    checkoutDate: {
+      errorMessage: '',
+      value: ''
+    },
+    guests: {
+      errorMessage: '',
+      value: 1
+    },
+    location: {
+      errorMessage: '',
+      value: ''
+    }
+  }
+
   export default defineComponent({
     name: 'HotelForm',
     components: { ButtonSecondary, ButtonPrimary, ContainerCard, HotelFields },
     setup() {
       const hotelStore = useHotelStore()
-      const searchData: SearchData = reactive({
-        checkinDate: {
-          errorMessage: '',
-          value: ''
-        },
-        checkoutDate: {
-          errorMessage: '',
-          value: ''
-        },
-        guests: {
-          errorMessage: '',
-          value: 1
-        },
-        location: {
-          errorMessage: '',
-          value: ''
-        }
-      })
+      const searchData: SearchData = reactive(INITIAL_STATE)
 
       const updateErrors = (errors: ZodIssue[]) => {
         errors.forEach(error => {
@@ -68,14 +70,12 @@
           // eslint-disable-next-line
           console.log(result.error.errors)
           updateErrors(result.error.errors)
-          return
         }
-        // eslint-disable-next-line
-        console.log('foii')
       }
 
       const handleSearchHotels = () => {
         validateForm()
+
         // eslint-disable-next-line
         console.log({
           location: searchData.location,
@@ -95,6 +95,11 @@
       }
 
       const handleResetSearch = () => {
+        searchData.location.value = ''
+        searchData.checkinDate.value = ''
+        searchData.checkoutDate.value = ''
+        searchData.guests.value = 1
+
         hotelStore.loadHotels()
       }
 
