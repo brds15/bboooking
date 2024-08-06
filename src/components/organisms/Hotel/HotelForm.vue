@@ -17,14 +17,16 @@
     location: FieldProps<string>
   }
 
+  const DEFAULT_MESSAGE = 'Campo obrigatório'
+
   const stringSchema = z.object({
     errorMessage: z.string(),
-    value: z.string().min(1, { message: 'Campo obrigatório' })
+    value: z.string().min(1, { message: DEFAULT_MESSAGE })
   })
 
   const numberSchema = z.object({
     errorMessage: z.string(),
-    value: z.number().min(1, { message: 'Campo obrigatório' })
+    value: z.number().min(1, { message: DEFAULT_MESSAGE })
   })
 
   const hotelFormStateSchema = z.object({
