@@ -188,6 +188,7 @@
     }
 
     @media (max-width: 992px) {
+      box-shadow: $box-shadow-md;
       gap: 8px;
       padding: 12px;
 
