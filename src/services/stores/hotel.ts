@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import hotelApi from '@/services/api/hotelApi'
 import MAX_ITEMS_TO_COMPARE from '@/constants/hotel'
-import { ActiveOrderType, AllOrders, Hotel, SortKeys } from '@/types/hotels'
+import { ActiveOrderType, AllOrders, Hotel, SearchData, SortKeys } from '@/types/hotels'
 
 const useHotelStore = defineStore({
   id: 'hotel',
@@ -68,6 +68,15 @@ const useHotelStore = defineStore({
     loadHotels(): void {
       hotelApi
         .findHotels()
+        .then(response => {
+          if (response.data?.length) this.updateHotelList(response.data)
+        })
+        // eslint-disable-next-line no-console
+        .catch(e => console.error('error::', e))
+    },
+    loadHotelsByParams(params: SearchData): void {
+      hotelApi
+        .findHotelsByParams(params)
         .then(response => {
           if (response.data?.length) this.updateHotelList(response.data)
         })

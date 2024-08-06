@@ -5,7 +5,6 @@
   import ButtonSecondary from '@/components/atoms/buttons/ButtonSecondary.vue'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelFields from '@/components/molecules/Hotel/HotelFields.vue'
-  import hotelApi from '@/services/api/hotelApi'
   import useHotelStore from '@/services/stores/hotel'
   import { FieldProps, SearchData } from '@/types/hotels'
 
@@ -85,13 +84,7 @@
           guests: searchData.guests
         })
 
-        hotelApi
-          .findHotelsByParams(searchData)
-          .then(response => {
-            if (response.data?.length) hotelStore.updateHotelList(response.data)
-          })
-          // eslint-disable-next-line no-console
-          .catch(e => console.error('error::', e))
+        hotelStore.loadHotelsByParams(searchData)
       }
 
       const handleUpdateState = <K extends keyof SearchData>(
@@ -124,8 +117,10 @@
         :location="searchData.location"
         @updateState="handleUpdateState"
       />
-      <ButtonSecondary text="Ver todos" type="button" @click.prevent="handleResetSearch" />
-      <ButtonPrimary text="Buscar" type="submit" />
+      <div class="hotel-form-buttons">
+        <ButtonSecondary text="Ver todos" type="button" @click.prevent="handleResetSearch" />
+        <ButtonPrimary text="Buscar" type="submit" />
+      </div>
     </form>
   </ContainerCard>
 </template>
@@ -141,9 +136,11 @@
       margin-bottom: 24px;
     }
 
-    button {
-      display: block;
-      margin: 0 auto;
+    &-buttons {
+      align-items: center;
+      display: flex;
+      gap: 4px;
+      justify-content: center;
     }
   }
 </style>

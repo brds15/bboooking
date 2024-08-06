@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { defineComponent, onMounted } from 'vue'
+  import { defineComponent, onBeforeMount } from 'vue'
   import useHotelStore from '@/services/stores/hotel'
   import ContainerCard from '@/components/atoms/containers/ContainerCard.vue'
   import HotelCard from '@/components/molecules/Hotel/HotelCard.vue'
@@ -12,7 +12,7 @@
     setup() {
       const hotelStore = useHotelStore()
 
-      onMounted(async () => {
+      onBeforeMount(async () => {
         hotelStore.loadHotels()
       })
 
