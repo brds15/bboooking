@@ -1,5 +1,6 @@
 <script lang="ts">
   import { defineComponent, reactive } from 'vue'
+  import { DateTime } from 'luxon'
   import { z, ZodIssue } from 'zod'
   import ButtonPrimary from '@/components/atoms/buttons/ButtonPrimary.vue'
   import ButtonSecondary from '@/components/atoms/buttons/ButtonSecondary.vue'
@@ -20,8 +21,22 @@
     value: z.number().min(1, { message: DEFAULT_MESSAGE })
   })
 
+  const checkinDateSchema = z.object({
+    errorMessage: z.string(),
+    value: z
+      .string()
+      .min(1, { message: DEFAULT_MESSAGE })
+      .refine(
+        date => {
+          const checkinDate = DateTime.fromISO(date)
+          return checkinDate >= DateTime.now()
+        },
+        { message: 'Data deve ser maior' }
+      )
+  })
+
   const hotelFormStateSchema = z.object({
-    checkinDate: stringSchema,
+    checkinDate: checkinDateSchema,
     checkoutDate: stringSchema,
     guests: numberSchema,
     location: stringSchema
@@ -63,19 +78,21 @@
         })
       }
 
-      const validateForm = () => {
+      const isDataValid = () => {
         const result = hotelFormStateSchema.safeParse(searchData)
 
         if (!result.success) {
           // eslint-disable-next-line
           console.log(result.error.errors)
+
           updateErrors(result.error.errors)
+
+          return false
         }
+        return true
       }
 
       const handleSearchHotels = () => {
-        validateForm()
-
         // eslint-disable-next-line
         console.log({
           location: searchData.location,
@@ -84,7 +101,9 @@
           guests: searchData.guests
         })
 
-        hotelStore.loadHotelsByParams(searchData)
+        if (isDataValid()) {
+          hotelStore.loadHotelsByParams(searchData)
+        }
       }
 
       const handleUpdateState = <K extends keyof SearchData>(
