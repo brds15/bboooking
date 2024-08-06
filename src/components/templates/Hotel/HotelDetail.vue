@@ -47,8 +47,12 @@
       height: 100%;
 
       &-image {
+        background-image: unset;
+        bottom: 0;
         height: unset;
         padding: 12px;
+        position: fixed;
+        width: 89%;
       }
     }
   }
