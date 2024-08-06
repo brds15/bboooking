@@ -94,7 +94,9 @@
         searchData[field].value = value
       }
 
-      const handleResetSearch = () => {}
+      const handleResetSearch = () => {
+        hotelStore.loadHotels()
+      }
 
       return {
         searchData,
@@ -118,7 +120,7 @@
         @updateState="handleUpdateState"
       />
       <div class="hotel-form-buttons">
-        <ButtonSecondary text="Ver todos" type="button" @click.prevent="handleResetSearch" />
+        <ButtonSecondary text="Ver todos" type="button" @click="handleResetSearch" />
         <ButtonPrimary text="Buscar" type="submit" />
       </div>
     </form>
